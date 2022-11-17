@@ -19,9 +19,9 @@ class ViewController: UIViewController {
     
     private lazy var mainLabel: UILabel = {
         let label = UILabel()
-        label.text = "ToDo List"
+        label.text = "Todo List"
         label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        label.font = UIFont(name: "Avenir Next", size: 50)
+        label.font = UIFont(name: "Avenir Next", size: 40)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -60,7 +60,7 @@ class ViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -94,7 +94,7 @@ class ViewController: UIViewController {
     
     private func setSubviewsLayouts() {
         NSLayoutConstraint.activate([
-
+            
             backGroundImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
             backGroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -10),
             backGroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
@@ -115,17 +115,16 @@ class ViewController: UIViewController {
             loginButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16 ),
             loginButton.heightAnchor.constraint(equalToConstant: 50),
             
-            loginLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 340),
+            loginLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 280),
             loginLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
-            mainImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
+            mainImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 80),
             mainImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             mainLabel.topAnchor.constraint(equalTo: mainImageView.bottomAnchor, constant: 7),
             mainLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-            
-    ])
-
+        ])
+        
     }
     
 }
