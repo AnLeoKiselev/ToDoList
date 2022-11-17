@@ -14,6 +14,7 @@
 		1C324EFB291E91160032F899 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C324EF9291E91160032F899 /* LaunchScreen.storyboard */; };
 		1C324F07292521820032F899 /* EmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C324F06292521820032F899 /* EmailView.swift */; };
 		1C324F09292628E50032F899 /* PasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C324F08292628E50032F899 /* PasswordView.swift */; };
+		1C324F0B29269F140032F899 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C324F0A29269F140032F899 /* CreateAccountViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		1C324EFC291E91160032F899 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1C324F06292521820032F899 /* EmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailView.swift; sourceTree = "<group>"; };
 		1C324F08292628E50032F899 /* PasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordView.swift; sourceTree = "<group>"; };
+		1C324F0A29269F140032F899 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				1C324EEE291E91140032F899 /* AppDelegate.swift */,
 				1C324EF0291E91140032F899 /* SceneDelegate.swift */,
 				1C324EF2291E91140032F899 /* LoginViewController.swift */,
+				1C324F0A29269F140032F899 /* CreateAccountViewController.swift */,
 				1C324F06292521820032F899 /* EmailView.swift */,
 				1C324F08292628E50032F899 /* PasswordView.swift */,
 				1C324EF7291E91160032F899 /* Assets.xcassets */,
@@ -140,6 +143,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C324F0B29269F140032F899 /* CreateAccountViewController.swift in Sources */,
 				1C324F09292628E50032F899 /* PasswordView.swift in Sources */,
 				1C324EF3291E91140032F899 /* LoginViewController.swift in Sources */,
 				1C324F07292521820032F899 /* EmailView.swift in Sources */,

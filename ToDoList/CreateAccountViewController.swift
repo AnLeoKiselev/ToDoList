@@ -1,13 +1,13 @@
 //
-//  ViewController.swift
+//  CreateAccountViewController.swift
 //  ToDoList
 //
-//  Created by Anatoliy on 11.11.2022.
+//  Created by Anatoliy on 17.11.2022.
 //
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class CreateAccountViewController: UIViewController {
     
     private lazy var emailView = EmailView()
     private lazy var passwordView = PasswordView()
@@ -180,20 +180,17 @@ class LoginViewController: UIViewController {
     }
 }
 
-extension UIButton {
-  func underlineText() {
-    guard let title = title(for: .normal) else { return }
-
-    let titleString = NSMutableAttributedString(string: title)
-    titleString.addAttribute(
-      .underlineStyle,
-      value: NSUnderlineStyle.single.rawValue,
-      range: NSRange(location: 0, length: title.count)
-    )
-    setAttributedTitle(titleString, for: .normal)
-  }
-}
-
-
-
-
+//extension UIButton {
+//  func underlineText() {
+//    guard let title = title(for: .normal) else { return }
+//
+//    let titleString = NSMutableAttributedString(string: title)
+//    titleString.addAttribute(
+//      .underlineStyle,
+//      value: NSUnderlineStyle.single.rawValue,
+//      range: NSRange(location: 0, length: title.count)
+//    )
+//    setAttributedTitle(titleString, for: .normal)
+//  }
+//}
+//
