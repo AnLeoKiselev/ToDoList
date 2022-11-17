@@ -55,6 +55,7 @@ class LoginViewController: UIViewController {
         button.underlineText()
         button.tintColor = .white
         button.titleLabel?.font = UIFont(name: "Avenir Next Bold", size: 18)
+        button.addTarget(self, action: #selector(createAccountButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -102,6 +103,10 @@ class LoginViewController: UIViewController {
         setSubviewsLayouts()
         
     }
+    
+    @IBAction func createAccountButtonTapped() {
+        present(CreateAccountViewController(), animated: true)
+   }
     
     private func setSubviews() {
         emailView.layer.cornerRadius = 8
