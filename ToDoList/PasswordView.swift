@@ -19,7 +19,7 @@ class PasswordView: UIView, UITextFieldDelegate {
     let passwordTextField: UITextField = {
         let textField = UITextField()
         textField.text = "Password"
-        textField.textColor = .white
+        textField.textColor = #colorLiteral(red: 0.6904429793, green: 0.6597178578, blue: 0.8047469258, alpha: 1)
         textField.font = UIFont(name: "SF Pro Text Bold", size: 200)
         textField.keyboardType = .emailAddress //тип клавиатуры
         textField.keyboardAppearance = .dark
@@ -47,8 +47,8 @@ class PasswordView: UIView, UITextFieldDelegate {
     private func setConstraints() {
         
         NSLayoutConstraint.activate([
-            lockImageView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
-            lockImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
+            lockImageView.topAnchor.constraint(equalTo: topAnchor, constant: 13),
+            lockImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 19),
             
             passwordTextField.topAnchor.constraint(equalTo: topAnchor, constant: 1),
             passwordTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 50),

@@ -19,7 +19,7 @@ class EmailView: UIView, UITextFieldDelegate {
     let loginTextField: UITextField = {
         let textField = UITextField()
         textField.text = "E-mail"
-        textField.textColor = .white
+        textField.textColor = #colorLiteral(red: 0.6904429793, green: 0.6597178578, blue: 0.8047469258, alpha: 1)
         textField.font = UIFont(name: "SF Pro Text Bold", size: 200)
         textField.keyboardType = .emailAddress //тип клавиатуры
         textField.keyboardAppearance = .dark
