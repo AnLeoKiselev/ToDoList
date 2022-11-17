@@ -56,11 +56,11 @@ class ViewController: UIViewController {
     }()
     
     private lazy var createAccountButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         button.setTitle("Create one", for: .normal)
         button.tintColor = .blue
         button.underlineText()
-        button.tintColor = .blue
+        button.tintColor = .white
         button.titleLabel?.font = UIFont(name: "Avenir Next Bold", size: 18)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -91,7 +91,7 @@ class ViewController: UIViewController {
     }()
     
     private lazy var loginButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         button.setTitle("Log in", for: .normal)
         button.backgroundColor = #colorLiteral(red: 0.7490196078, green: 0.3529411765, blue: 0.9490196078, alpha: 1)
         button.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
