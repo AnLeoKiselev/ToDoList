@@ -60,6 +60,7 @@ class ViewController: UIViewController {
         button.setTitle("Create one", for: .normal)
         button.tintColor = .blue
         button.underlineText()
+        button.tintColor = .blue
         button.titleLabel?.font = UIFont(name: "Avenir Next Bold", size: 18)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -84,7 +85,7 @@ class ViewController: UIViewController {
         let label = UILabel()
         label.text = "Log In"
         label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        label.font = UIFont(name: "Avenir Next", size: 24)
+        label.font = UIFont(name: "Avenir Next Bold", size: 24)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -94,8 +95,8 @@ class ViewController: UIViewController {
         button.setTitle("Log in", for: .normal)
         button.backgroundColor = #colorLiteral(red: 0.7490196078, green: 0.3529411765, blue: 0.9490196078, alpha: 1)
         button.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        button.layer.cornerRadius = 8
-        button.titleLabel?.font = UIFont(name: "Avenir Next", size: 20)
+        button.layer.cornerRadius = 10
+        button.titleLabel?.font = UIFont(name: "Avenir Next Bold", size: 20)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -172,7 +173,7 @@ class ViewController: UIViewController {
             emailSmallLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             emailSmallLabel.heightAnchor.constraint(equalToConstant: 25),
             
-            passwordSmallLabel.topAnchor.constraint(equalTo: emailView.bottomAnchor, constant: 10),
+            passwordSmallLabel.topAnchor.constraint(equalTo: emailView.bottomAnchor, constant: 5),
             passwordSmallLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             passwordSmallLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             passwordSmallLabel.heightAnchor.constraint(equalToConstant: 25),
@@ -199,6 +200,10 @@ extension UIButton {
       range: NSRange(location: 0, length: title.count)
     )
     setAttributedTitle(titleString, for: .normal)
+    
   }
 }
+
+
+
 
