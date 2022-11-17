@@ -18,9 +18,11 @@ class PasswordView: UIView, UITextFieldDelegate {
     
     let passwordTextField: UITextField = {
         let textField = UITextField()
-        textField.text = "Password"
-        textField.textColor = #colorLiteral(red: 0.6904429793, green: 0.6597178578, blue: 0.8047469258, alpha: 1)
-        textField.font = UIFont(name: "SF Pro Text Bold", size: 200)
+        textField.attributedPlaceholder =
+        NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.init(_colorLiteralRed: 0.6904429793, green: 0.6597178578, blue: 0.8047469258, alpha: 0.5)])
+        //textField.textColor = #colorLiteral(red: 0.6904429793, green: 0.6597178578, blue: 0.8047469258, alpha: 1)
+        textField.textColor = .white
+        textField.font = UIFont(name: "SF Pro Text Bold", size: 20)
         textField.keyboardType = .emailAddress //тип клавиатуры
         textField.keyboardAppearance = .dark
         textField.translatesAutoresizingMaskIntoConstraints = false
