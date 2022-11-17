@@ -41,7 +41,7 @@ class CreateAccountViewController: UIViewController {
     
     private lazy var noAccountLabel: UILabel = {
         let label = UILabel()
-        label.text = "No account?"
+        label.text = "Already have an account?"
         label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         label.font = UIFont(name: "Avenir Next", size: 18)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -50,11 +50,12 @@ class CreateAccountViewController: UIViewController {
     
     private lazy var createAccountButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Create one", for: .normal)
+        button.setTitle("Log in", for: .normal)
         button.tintColor = .blue
         button.underlineText()
         button.tintColor = .white
         button.titleLabel?.font = UIFont(name: "Avenir Next Bold", size: 18)
+        button.addTarget(self, action: #selector(logInButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -76,7 +77,7 @@ class CreateAccountViewController: UIViewController {
     
     private lazy var loginLabel: UILabel = {
         let label = UILabel()
-        label.text = "Log In"
+        label.text = "Create account"
         label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         label.font = UIFont(name: "Avenir Next Bold", size: 24)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -85,7 +86,7 @@ class CreateAccountViewController: UIViewController {
     
     private lazy var loginButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Log in", for: .normal)
+        button.setTitle("Create account", for: .normal)
         button.backgroundColor = #colorLiteral(red: 0.7490196078, green: 0.3529411765, blue: 0.9490196078, alpha: 1)
         button.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         button.layer.cornerRadius = 10
@@ -127,6 +128,10 @@ class CreateAccountViewController: UIViewController {
         view.addSubview(passwordSmallLabel)
         view.addSubview(noAccountLabel)
         view.addSubview(createAccountButton)
+    }
+    
+    @objc func logInButtonTapped() {
+        self.dismiss(animated: true, completion: nil)
     }
     
     private func setSubviewsLayouts() {
@@ -172,7 +177,7 @@ class CreateAccountViewController: UIViewController {
             passwordSmallLabel.heightAnchor.constraint(equalToConstant: 25),
             
             noAccountLabel.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 15),
-            noAccountLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 90),
+            noAccountLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 55),
             
             createAccountButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 9),
             createAccountButton.leadingAnchor.constraint(equalTo: noAccountLabel.trailingAnchor, constant: 5)

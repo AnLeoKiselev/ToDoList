@@ -103,11 +103,7 @@ class LoginViewController: UIViewController {
         setSubviewsLayouts()
         
     }
-    
-    @IBAction func createAccountButtonTapped() {
-        present(CreateAccountViewController(), animated: true)
-   }
-    
+
     private func setSubviews() {
         emailView.layer.cornerRadius = 8
         emailView.layer.borderWidth = 1
@@ -133,6 +129,10 @@ class LoginViewController: UIViewController {
         view.addSubview(noAccountLabel)
         view.addSubview(createAccountButton)
     }
+    
+    @IBAction func createAccountButtonTapped() {
+        present(CreateAccountViewController(), animated: true)
+   }
     
     private func setSubviewsLayouts() {
         NSLayoutConstraint.activate([
