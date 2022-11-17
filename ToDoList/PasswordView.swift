@@ -25,6 +25,7 @@ class PasswordView: UIView, UITextFieldDelegate {
         textField.font = UIFont(name: "SF Pro Text Bold", size: 20)
         textField.keyboardType = .emailAddress //тип клавиатуры
         textField.keyboardAppearance = .dark
+        textField.enablesReturnKeyAutomatically = true
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()

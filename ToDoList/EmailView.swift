@@ -16,15 +16,16 @@ class EmailView: UIView, UITextFieldDelegate {
         return imageView
     } ()
     
-    let loginTextField: UITextField = {
+    let emailTextField: UITextField = {
         let textField = UITextField()
         textField.attributedPlaceholder =
         NSAttributedString(string: "E-mail", attributes: [NSAttributedString.Key.foregroundColor: UIColor.init(_colorLiteralRed: 0.6904429793, green: 0.6597178578, blue: 0.8047469258, alpha: 0.5)])
+        textField.enablesReturnKeyAutomatically = true
         //textField.textColor = #colorLiteral(red: 0.6904429793, green: 0.6597178578, blue: 0.8047469258, alpha: 1)
         textField.textColor = .white
         textField.font = UIFont(name: "SF Pro Text Bold", size: 20)
         textField.keyboardType = .emailAddress //тип клавиатуры
-        textField.keyboardAppearance = .dark
+        //textField.keyboardAppearance = .dark
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
@@ -43,7 +44,7 @@ class EmailView: UIView, UITextFieldDelegate {
     private func setupView() {
         translatesAutoresizingMaskIntoConstraints = false
         addSubview(envelopeImageView)
-        addSubview(loginTextField)
+        addSubview(emailTextField)
     }
     
     private func setConstraints() {
@@ -52,10 +53,10 @@ class EmailView: UIView, UITextFieldDelegate {
             envelopeImageView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
             envelopeImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
             
-            loginTextField.topAnchor.constraint(equalTo: topAnchor, constant: 1),
-            loginTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 50),
-            loginTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
-            loginTextField.heightAnchor.constraint(equalToConstant: 48)
+            emailTextField.topAnchor.constraint(equalTo: topAnchor, constant: 1),
+            emailTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 50),
+            emailTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
+            emailTextField.heightAnchor.constraint(equalToConstant: 48)
         ])
     }
 }
