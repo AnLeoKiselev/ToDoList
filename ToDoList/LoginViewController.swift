@@ -12,7 +12,7 @@ import UIKit
 
 //путь: авторизация - попадаешь на регистрацию - авторизация
 
-class ViewController: UIViewController {
+class LoginViewController: UIViewController {
     
     private lazy var emailView = EmailView()
     private lazy var passwordView = PasswordView()

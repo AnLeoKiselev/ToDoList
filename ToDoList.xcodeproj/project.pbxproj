@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		1C324EEF291E91140032F899 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C324EEE291E91140032F899 /* AppDelegate.swift */; };
 		1C324EF1291E91140032F899 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C324EF0291E91140032F899 /* SceneDelegate.swift */; };
-		1C324EF3291E91140032F899 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C324EF2291E91140032F899 /* ViewController.swift */; };
+		1C324EF3291E91140032F899 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C324EF2291E91140032F899 /* LoginViewController.swift */; };
 		1C324EF8291E91160032F899 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C324EF7291E91160032F899 /* Assets.xcassets */; };
 		1C324EFB291E91160032F899 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C324EF9291E91160032F899 /* LaunchScreen.storyboard */; };
 		1C324F07292521820032F899 /* EmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C324F06292521820032F899 /* EmailView.swift */; };
@@ -20,7 +20,7 @@
 		1C324EEB291E91140032F899 /* ToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C324EEE291E91140032F899 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1C324EF0291E91140032F899 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		1C324EF2291E91140032F899 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1C324EF2291E91140032F899 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1C324EF7291E91160032F899 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1C324EFA291E91160032F899 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1C324EFC291E91160032F899 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -60,7 +60,7 @@
 			children = (
 				1C324EEE291E91140032F899 /* AppDelegate.swift */,
 				1C324EF0291E91140032F899 /* SceneDelegate.swift */,
-				1C324EF2291E91140032F899 /* ViewController.swift */,
+				1C324EF2291E91140032F899 /* LoginViewController.swift */,
 				1C324F06292521820032F899 /* EmailView.swift */,
 				1C324F08292628E50032F899 /* PasswordView.swift */,
 				1C324EF7291E91160032F899 /* Assets.xcassets */,
@@ -141,7 +141,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C324F09292628E50032F899 /* PasswordView.swift in Sources */,
-				1C324EF3291E91140032F899 /* ViewController.swift in Sources */,
+				1C324EF3291E91140032F899 /* LoginViewController.swift in Sources */,
 				1C324F07292521820032F899 /* EmailView.swift in Sources */,
 				1C324EEF291E91140032F899 /* AppDelegate.swift in Sources */,
 				1C324EF1291E91140032F899 /* SceneDelegate.swift in Sources */,
