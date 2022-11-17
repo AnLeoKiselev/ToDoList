@@ -14,7 +14,19 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let backGroundImageView: UIImageView = {
+    private lazy var emailView = EmailView()
+    private lazy var passwordView = PasswordView()
+    
+    private lazy var mainLabel: UILabel = {
+        let label = UILabel()
+        label.text = "ToDo List"
+        label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        label.font = UIFont(name: "Avenir Next", size: 50)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private lazy var backGroundImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "background")
         //imageView.alpha = 0.3
@@ -22,17 +34,14 @@ class ViewController: UIViewController {
         return imageView
     } ()
     
-    let mainImageView: UIImageView = {
+    private lazy var mainImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "bird")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     } ()
     
-    private lazy var emailView = EmailView()
-    private lazy var passwordView = PasswordView()
-    
-    private lazy var titleLabel: UILabel = {
+    private lazy var loginLabel: UILabel = {
         let label = UILabel()
         label.text = "Log In"
         label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
@@ -78,8 +87,9 @@ class ViewController: UIViewController {
         view.addSubview(emailView)
         view.addSubview(passwordView)
         view.addSubview(loginButton)
-        view.addSubview(titleLabel)
+        view.addSubview(loginLabel)
         view.addSubview(mainImageView)
+        view.addSubview(mainLabel)
     }
     
     private func setSubviewsLayouts() {
@@ -90,7 +100,7 @@ class ViewController: UIViewController {
             backGroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
             backGroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
             
-            emailView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 24),
+            emailView.topAnchor.constraint(equalTo: loginLabel.bottomAnchor, constant: 18),
             emailView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             emailView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             emailView.heightAnchor.constraint(equalToConstant: 48),
@@ -100,16 +110,19 @@ class ViewController: UIViewController {
             passwordView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             passwordView.heightAnchor.constraint(equalToConstant: 48),
             
-            loginButton.topAnchor.constraint(equalTo: passwordView.bottomAnchor, constant: 24),
+            loginButton.topAnchor.constraint(equalTo: passwordView.bottomAnchor, constant: 30),
             loginButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             loginButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16 ),
             loginButton.heightAnchor.constraint(equalToConstant: 50),
             
-            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 297),
-            titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loginLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 340),
+            loginLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             mainImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
-            mainImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            mainImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            mainLabel.topAnchor.constraint(equalTo: mainImageView.bottomAnchor, constant: 7),
+            mainLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
             
     ])
 
