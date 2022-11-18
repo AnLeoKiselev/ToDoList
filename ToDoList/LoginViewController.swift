@@ -91,6 +91,7 @@ class LoginViewController: UIViewController {
         button.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         button.layer.cornerRadius = 10
         button.titleLabel?.font = UIFont(name: "Avenir Next Bold", size: 20)
+//        button.addTarget(self, action: #selector(logInButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -133,6 +134,18 @@ class LoginViewController: UIViewController {
     @IBAction func createAccountButtonTapped() {
         present(CreateAccountViewController(), animated: true)
    }
+    
+    private func logInButtonTapped() {
+        
+        //EmailView.emailTextField.background = .red
+        //if let textField = emailTextField as? EmailView{
+           
+        // chicken.layAnEgg()
+
+        
+        
+        //emailTextField.backgroundColor = .red
+    }
     
     private func setSubviewsLayouts() {
         NSLayoutConstraint.activate([
@@ -177,7 +190,7 @@ class LoginViewController: UIViewController {
             passwordSmallLabel.heightAnchor.constraint(equalToConstant: 25),
             
             noAccountLabel.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 15),
-            noAccountLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 90),
+            noAccountLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 110),
             
             createAccountButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 9),
             createAccountButton.leadingAnchor.constraint(equalTo: noAccountLabel.trailingAnchor, constant: 5)

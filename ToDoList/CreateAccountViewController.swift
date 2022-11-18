@@ -39,7 +39,7 @@ class CreateAccountViewController: UIViewController {
         return label
     }()
     
-    private lazy var noAccountLabel: UILabel = {
+    private lazy var alreadyhaveAnAccountLabel: UILabel = {
         let label = UILabel()
         label.text = "Already have an account?"
         label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
@@ -48,7 +48,7 @@ class CreateAccountViewController: UIViewController {
         return label
     }()
     
-    private lazy var createAccountButton: UIButton = {
+    private lazy var logInButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Log in", for: .normal)
         button.tintColor = .blue
@@ -126,8 +126,8 @@ class CreateAccountViewController: UIViewController {
         view.addSubview(mainLabel)
         view.addSubview(emailSmallLabel)
         view.addSubview(passwordSmallLabel)
-        view.addSubview(noAccountLabel)
-        view.addSubview(createAccountButton)
+        view.addSubview(alreadyhaveAnAccountLabel)
+        view.addSubview(logInButton)
     }
     
     @objc func logInButtonTapped() {
@@ -176,26 +176,12 @@ class CreateAccountViewController: UIViewController {
             passwordSmallLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             passwordSmallLabel.heightAnchor.constraint(equalToConstant: 25),
             
-            noAccountLabel.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 15),
-            noAccountLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 55),
+            alreadyhaveAnAccountLabel.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 15),
+            alreadyhaveAnAccountLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 77),
             
-            createAccountButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 9),
-            createAccountButton.leadingAnchor.constraint(equalTo: noAccountLabel.trailingAnchor, constant: 5)
+            logInButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 9),
+            logInButton.leadingAnchor.constraint(equalTo: alreadyhaveAnAccountLabel.trailingAnchor, constant: 5)
         ])
     }
 }
 
-//extension UIButton {
-//  func underlineText() {
-//    guard let title = title(for: .normal) else { return }
-//
-//    let titleString = NSMutableAttributedString(string: title)
-//    titleString.addAttribute(
-//      .underlineStyle,
-//      value: NSUnderlineStyle.single.rawValue,
-//      range: NSRange(location: 0, length: title.count)
-//    )
-//    setAttributedTitle(titleString, for: .normal)
-//  }
-//}
-//

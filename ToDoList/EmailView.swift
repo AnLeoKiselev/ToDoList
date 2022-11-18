@@ -30,6 +30,8 @@ class EmailView: UIView, UITextFieldDelegate {
         return textField
     }()
 
+    
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
