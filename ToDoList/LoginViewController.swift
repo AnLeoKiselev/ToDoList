@@ -62,7 +62,7 @@ class LoginViewController: UIViewController {
     
     private lazy var backGroundImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "background")
+        imageView.image = UIImage(named: "background2")
         //imageView.alpha = 0.3
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -143,9 +143,9 @@ class LoginViewController: UIViewController {
         NSLayoutConstraint.activate([
             
             backGroundImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-            backGroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -10),
+            backGroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
             backGroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            backGroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
+            backGroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 20),
             
             emailView.topAnchor.constraint(equalTo: emailSmallLabel.bottomAnchor, constant: 1),
             emailView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),

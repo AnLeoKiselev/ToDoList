@@ -62,7 +62,7 @@ class CreateAccountViewController: UIViewController {
     
     private lazy var backGroundImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "background")
+        imageView.image = UIImage(named: "background2")
         //imageView.alpha = 0.3
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -137,8 +137,8 @@ class CreateAccountViewController: UIViewController {
     private func setSubviewsLayouts() {
         NSLayoutConstraint.activate([
             
-            backGroundImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-            backGroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -10),
+            backGroundImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: -20),
+            backGroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
             backGroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
             backGroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
             
