@@ -157,7 +157,7 @@ class LoginViewController: UIViewController {
             passwordView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             passwordView.heightAnchor.constraint(equalToConstant: 48),
             
-            loginButton.topAnchor.constraint(equalTo: passwordView.bottomAnchor, constant: 40),
+            loginButton.topAnchor.constraint(equalTo: passwordView.bottomAnchor, constant: 30),
             loginButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             loginButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16 ),
             loginButton.heightAnchor.constraint(equalToConstant: 50),

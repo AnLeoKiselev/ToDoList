@@ -75,7 +75,7 @@ class CreateAccountViewController: UIViewController {
         return imageView
     } ()
     
-    private lazy var loginLabel: UILabel = {
+    private lazy var createAccountLabel: UILabel = {
         let label = UILabel()
         label.text = "Create account"
         label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
@@ -84,7 +84,7 @@ class CreateAccountViewController: UIViewController {
         return label
     }()
     
-    private lazy var loginButton: UIButton = {
+    private lazy var createAccountButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Create account", for: .normal)
         button.backgroundColor = #colorLiteral(red: 0.7490196078, green: 0.3529411765, blue: 0.9490196078, alpha: 1)
@@ -120,8 +120,8 @@ class CreateAccountViewController: UIViewController {
         view.addSubview(backGroundImageView)
         view.addSubview(emailView)
         view.addSubview(passwordView)
-        view.addSubview(loginButton)
-        view.addSubview(loginLabel)
+        view.addSubview(createAccountButton)
+        view.addSubview(createAccountLabel)
         view.addSubview(mainLogoImageView)
         view.addSubview(mainLabel)
         view.addSubview(emailSmallLabel)
@@ -152,13 +152,13 @@ class CreateAccountViewController: UIViewController {
             passwordView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             passwordView.heightAnchor.constraint(equalToConstant: 48),
             
-            loginButton.topAnchor.constraint(equalTo: passwordView.bottomAnchor, constant: 40),
-            loginButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            loginButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16 ),
-            loginButton.heightAnchor.constraint(equalToConstant: 50),
+            createAccountButton.topAnchor.constraint(equalTo: passwordView.bottomAnchor, constant: 30),
+            createAccountButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            createAccountButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16 ),
+            createAccountButton.heightAnchor.constraint(equalToConstant: 50),
             
-            loginLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 250),
-            loginLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            createAccountLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 240),
+            createAccountLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             mainLogoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 60),
             mainLogoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -166,7 +166,7 @@ class CreateAccountViewController: UIViewController {
             mainLabel.topAnchor.constraint(equalTo: mainLogoImageView.bottomAnchor, constant: 7),
             mainLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
-            emailSmallLabel.topAnchor.constraint(equalTo: loginLabel.bottomAnchor, constant: 10),
+            emailSmallLabel.topAnchor.constraint(equalTo: createAccountLabel.bottomAnchor, constant: 10),
             emailSmallLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             emailSmallLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             emailSmallLabel.heightAnchor.constraint(equalToConstant: 25),
@@ -176,10 +176,10 @@ class CreateAccountViewController: UIViewController {
             passwordSmallLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             passwordSmallLabel.heightAnchor.constraint(equalToConstant: 25),
             
-            alreadyhaveAnAccountLabel.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 15),
+            alreadyhaveAnAccountLabel.topAnchor.constraint(equalTo: createAccountButton.bottomAnchor, constant: 15),
             alreadyhaveAnAccountLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 77),
             
-            logInButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 9),
+            logInButton.topAnchor.constraint(equalTo: createAccountButton.bottomAnchor, constant: 9),
             logInButton.leadingAnchor.constraint(equalTo: alreadyhaveAnAccountLabel.trailingAnchor, constant: 5)
         ])
     }
