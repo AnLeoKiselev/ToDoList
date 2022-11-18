@@ -21,7 +21,6 @@ class EmailView: UIView, UITextFieldDelegate {
         textField.attributedPlaceholder =
         NSAttributedString(string: "E-mail", attributes: [NSAttributedString.Key.foregroundColor: UIColor.init(_colorLiteralRed: 0.6904429793, green: 0.6597178578, blue: 0.8047469258, alpha: 0.5)])
         textField.enablesReturnKeyAutomatically = true
-        //textField.textColor = #colorLiteral(red: 0.6904429793, green: 0.6597178578, blue: 0.8047469258, alpha: 1)
         textField.textColor = .white
         textField.font = UIFont(name: "SF Pro Text Bold", size: 20)
         textField.keyboardType = .emailAddress //тип клавиатуры
@@ -29,15 +28,13 @@ class EmailView: UIView, UITextFieldDelegate {
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
-
-    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         setupView()
         setConstraints()
-     }
+    }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -54,7 +51,6 @@ class EmailView: UIView, UITextFieldDelegate {
         NSLayoutConstraint.activate([
             envelopeImageView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
             envelopeImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
-            
             emailTextField.topAnchor.constraint(equalTo: topAnchor, constant: 1),
             emailTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 50),
             emailTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),

@@ -20,7 +20,6 @@ class PasswordView: UIView, UITextFieldDelegate {
         let textField = UITextField()
         textField.attributedPlaceholder =
         NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.init(_colorLiteralRed: 0.6904429793, green: 0.6597178578, blue: 0.8047469258, alpha: 0.5)])
-        //textField.textColor = #colorLiteral(red: 0.6904429793, green: 0.6597178578, blue: 0.8047469258, alpha: 1)
         textField.textColor = .white
         textField.font = UIFont(name: "SF Pro Text Bold", size: 20)
         textField.keyboardType = .emailAddress //тип клавиатуры
@@ -29,13 +28,13 @@ class PasswordView: UIView, UITextFieldDelegate {
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         setupView()
         setConstraints()
-     }
+    }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -52,7 +51,6 @@ class PasswordView: UIView, UITextFieldDelegate {
         NSLayoutConstraint.activate([
             lockImageView.topAnchor.constraint(equalTo: topAnchor, constant: 13),
             lockImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 19),
-            
             passwordTextField.topAnchor.constraint(equalTo: topAnchor, constant: 1),
             passwordTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 50),
             passwordTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),

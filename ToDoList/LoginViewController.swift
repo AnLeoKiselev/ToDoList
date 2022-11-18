@@ -91,11 +91,11 @@ class LoginViewController: UIViewController {
         button.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         button.layer.cornerRadius = 10
         button.titleLabel?.font = UIFont(name: "Avenir Next Bold", size: 20)
-//        button.addTarget(self, action: #selector(logInButtonTapped), for: .touchUpInside)
+        //        button.addTarget(self, action: #selector(logInButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -104,7 +104,7 @@ class LoginViewController: UIViewController {
         setSubviewsLayouts()
         
     }
-
+    
     private func setSubviews() {
         emailView.layer.cornerRadius = 8
         emailView.layer.borderWidth = 1
@@ -133,18 +133,9 @@ class LoginViewController: UIViewController {
     
     @IBAction func createAccountButtonTapped() {
         present(CreateAccountViewController(), animated: true)
-   }
+    }
     
     private func logInButtonTapped() {
-        
-        //EmailView.emailTextField.background = .red
-        //if let textField = emailTextField as? EmailView{
-           
-        // chicken.layAnEgg()
-
-        
-        
-        //emailTextField.backgroundColor = .red
     }
     
     private func setSubviewsLayouts() {
@@ -199,17 +190,17 @@ class LoginViewController: UIViewController {
 }
 
 extension UIButton {
-  func underlineText() {
-    guard let title = title(for: .normal) else { return }
-
-    let titleString = NSMutableAttributedString(string: title)
-    titleString.addAttribute(
-      .underlineStyle,
-      value: NSUnderlineStyle.single.rawValue,
-      range: NSRange(location: 0, length: title.count)
-    )
-    setAttributedTitle(titleString, for: .normal)
-  }
+    func underlineText() {
+        guard let title = title(for: .normal) else { return }
+        
+        let titleString = NSMutableAttributedString(string: title)
+        titleString.addAttribute(
+            .underlineStyle,
+            value: NSUnderlineStyle.single.rawValue,
+            range: NSRange(location: 0, length: title.count)
+        )
+        setAttributedTitle(titleString, for: .normal)
+    }
 }
 
 
