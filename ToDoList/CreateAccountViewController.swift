@@ -52,7 +52,7 @@ class CreateAccountViewController: UIViewController {
         let button = UIButton(type: .system)
         button.setTitle("Log in", for: .normal)
         button.tintColor = .blue
-        button.underlineText()
+        button.underlineText() //подчеркивание кнопки
         button.tintColor = .white
         button.titleLabel?.font = UIFont(name: "Avenir Next Bold", size: 18)
         button.addTarget(self, action: #selector(logInButtonTapped), for: .touchUpInside)
@@ -101,7 +101,7 @@ class CreateAccountViewController: UIViewController {
         setSubviews()
         addSubviewsToView()
         setSubviewsLayouts()
-        
+        self.hideKeyboardWhenTappedAround() //клава убирается после тапа везде, в LoginViewController есть extention
     }
     
     private func setSubviews() {
@@ -184,4 +184,5 @@ class CreateAccountViewController: UIViewController {
         ])
     }
 }
+
 

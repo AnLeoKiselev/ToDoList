@@ -52,7 +52,7 @@ class LoginViewController: UIViewController {
         let button = UIButton(type: .system)
         button.setTitle("Create one", for: .normal)
         button.tintColor = .blue
-        button.underlineText()
+        button.underlineText() //подчеркивание кнопки
         button.tintColor = .white
         button.titleLabel?.font = UIFont(name: "Avenir Next Bold", size: 18)
         button.addTarget(self, action: #selector(createAccountButtonTapped), for: .touchUpInside)
@@ -91,20 +91,21 @@ class LoginViewController: UIViewController {
         button.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         button.layer.cornerRadius = 10
         button.titleLabel?.font = UIFont(name: "Avenir Next Bold", size: 20)
-        //        button.addTarget(self, action: #selector(logInButtonTapped), for: .touchUpInside)
+//        button.addTarget(self, action: #selector(logInButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setSubviews()
         addSubviewsToView()
         setSubviewsLayouts()
+        self.hideKeyboardWhenTappedAround() //клава убирается после тапа везде
         
     }
-    
+
     private func setSubviews() {
         emailView.layer.cornerRadius = 8
         emailView.layer.borderWidth = 1
@@ -133,7 +134,7 @@ class LoginViewController: UIViewController {
     
     @IBAction func createAccountButtonTapped() {
         present(CreateAccountViewController(), animated: true)
-    }
+   }
     
     private func logInButtonTapped() {
     }
@@ -189,20 +190,30 @@ class LoginViewController: UIViewController {
     }
 }
 
-extension UIButton {
-    func underlineText() {
-        guard let title = title(for: .normal) else { return }
-        
-        let titleString = NSMutableAttributedString(string: title)
-        titleString.addAttribute(
-            .underlineStyle,
-            value: NSUnderlineStyle.single.rawValue,
-            range: NSRange(location: 0, length: title.count)
-        )
-        setAttributedTitle(titleString, for: .normal)
-    }
+extension UIButton {  //подчеркивание кнопки
+  func underlineText() {
+    guard let title = title(for: .normal) else { return }
+
+    let titleString = NSMutableAttributedString(string: title)
+    titleString.addAttribute(
+      .underlineStyle,
+      value: NSUnderlineStyle.single.rawValue,
+      range: NSRange(location: 0, length: title.count)
+    )
+    setAttributedTitle(titleString, for: .normal)
+  }
 }
 
-
+extension UIViewController { //клава убирается после тапа везде
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
 
 

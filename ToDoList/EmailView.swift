@@ -34,6 +34,7 @@ class EmailView: UIView, UITextFieldDelegate {
         
         setupView()
         setConstraints()
+        self.emailTextField.delegate = self //клава убирается после нажатия return
     }
     
     required init?(coder: NSCoder) {
@@ -44,6 +45,11 @@ class EmailView: UIView, UITextFieldDelegate {
         translatesAutoresizingMaskIntoConstraints = false
         addSubview(envelopeImageView)
         addSubview(emailTextField)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool { //клава убирается после нажатия return
+        self.endEditing(true)
+        return false
     }
     
     private func setConstraints() {
@@ -59,3 +65,5 @@ class EmailView: UIView, UITextFieldDelegate {
     }
 }
 
+
+    

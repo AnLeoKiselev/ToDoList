@@ -23,7 +23,7 @@ class PasswordView: UIView, UITextFieldDelegate {
         textField.textColor = .white
         textField.font = UIFont(name: "SF Pro Text Bold", size: 20)
         textField.keyboardType = .emailAddress //тип клавиатуры
-        textField.keyboardAppearance = .dark
+        //textField.keyboardAppearance = .dark
         textField.enablesReturnKeyAutomatically = true
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
@@ -34,6 +34,7 @@ class PasswordView: UIView, UITextFieldDelegate {
         
         setupView()
         setConstraints()
+        self.passwordTextField.delegate = self //клава убирается после нажатия return
     }
     
     required init?(coder: NSCoder) {
@@ -44,6 +45,11 @@ class PasswordView: UIView, UITextFieldDelegate {
         translatesAutoresizingMaskIntoConstraints = false
         addSubview(lockImageView)
         addSubview(passwordTextField)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool { //клава убирается после нажатия return
+        self.endEditing(true)
+        return false
     }
     
     private func setConstraints() {
