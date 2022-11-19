@@ -9,6 +9,15 @@ import UIKit
 
 class EmailView: UIView, UITextFieldDelegate {
     
+//    var placeHolder: String = ""
+//    init (name: String) {
+//        setupView()
+//        setConstraints()
+//        self.emailTextField.delegate = self //клава убирается после нажатия return
+//        placeHolder = name
+//        super.init(frame: .zero)
+//    }
+    
     let envelopeImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "envelope")
@@ -31,12 +40,12 @@ class EmailView: UIView, UITextFieldDelegate {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
         setupView()
         setConstraints()
         self.emailTextField.delegate = self //клава убирается после нажатия return
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

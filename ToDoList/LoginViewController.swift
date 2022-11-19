@@ -9,6 +9,7 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
+    //private lazy var emailView = EmailView(name: "E-mail")
     private lazy var emailView = EmailView()
     private lazy var passwordView = PasswordView()
     
@@ -91,7 +92,7 @@ class LoginViewController: UIViewController {
         button.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         button.layer.cornerRadius = 10
         button.titleLabel?.font = UIFont(name: "Avenir Next Bold", size: 20)
-//        button.addTarget(self, action: #selector(logInButtonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(logInButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -102,6 +103,8 @@ class LoginViewController: UIViewController {
         setSubviews()
         addSubviewsToView()
         setSubviewsLayouts()
+        
+        //emailView.emailTextField.backgroundColor = .red
         self.hideKeyboardWhenTappedAround() //клава убирается после тапа везде
         
     }
@@ -132,11 +135,25 @@ class LoginViewController: UIViewController {
         view.addSubview(createAccountButton)
     }
     
-    @IBAction func createAccountButtonTapped() {
-        present(CreateAccountViewController(), animated: true)
+    @objc func createAccountButtonTapped() {
+        present(CreateAccountViewController(), animated: true)      //экраны до главного, уничтожатся
    }
     
-    private func logInButtonTapped() {
+    @objc private func logInButtonTapped() {
+        
+        let viewController = TaskViewController()
+        viewController.title = "Tasks"
+        let navigationController = UINavigationController(rootViewController: viewController) //главный экран
+        navigationController.modalPresentationStyle = .fullScreen
+        present(navigationController, animated: true)
+        
+        //сверстать кнопки, детальная задача, экран добавления задачи - разных цветов и тайтлы
+        
+        
+        
+        
+        
+        
     }
     
     private func setSubviewsLayouts() {
