@@ -141,15 +141,17 @@ class LoginViewController: UIViewController {
     
     @objc private func logInButtonTapped() {
         
-        let viewController = TaskViewController()
-        viewController.title = "Tasks"
+        let viewController = TaskListViewController()
+        viewController.title = "Task List"
         let navigationController = UINavigationController(rootViewController: viewController) //главный экран
         navigationController.modalPresentationStyle = .fullScreen
-        present(navigationController, animated: true)
+        
+        present(navigationController, animated: true)  //present - показали и убрали
+        
+        
         
         //сверстать кнопки, детальная задача, экран добавления задачи - разных цветов и тайтлы
-        
-        
+
         
         
         
