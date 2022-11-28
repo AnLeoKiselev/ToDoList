@@ -12,7 +12,6 @@ class CustomTableViewCell: UITableViewCell {
     
     private let myImageView: UIImageView = {
         let imageView = UIImageView()
-        //imageView.image = UIImage(named: "checkmark")
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
@@ -27,10 +26,11 @@ class CustomTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.backgroundColor = #colorLiteral(red: 0.9564295411, green: 0.9725391269, blue: 0.9768132567, alpha: 1)
+        contentView.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
+        
         contentView.addSubview(myImageView)
         contentView.addSubview(myLabel)
-        //contentView.layer.cornerRadius = 10
+        contentView.layer.cornerRadius = 10
     }
     
     required init?(coder: NSCoder) {
@@ -49,6 +49,11 @@ class CustomTableViewCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
+        let margins = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
+        contentView.frame = contentView.frame.inset(by: margins) //пробелы между ячейками
+        
+        
         
         let imageSize = contentView.frame.size.height/2
         

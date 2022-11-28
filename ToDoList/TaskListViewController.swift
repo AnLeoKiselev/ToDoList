@@ -9,28 +9,31 @@ import UIKit
 
 class TaskListViewController: UIViewController {
     
-    private lazy var backGroundImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "background2")
-        //imageView.alpha = 0.3
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    } ()
+//    private lazy var backGroundImageView: UIImageView = {
+//        let imageView = UIImageView()
+//        imageView.image = UIImage(named: "background2")
+//        imageView.translatesAutoresizingMaskIntoConstraints = false
+//        return imageView
+//    } ()
     
     private let users = ["Boris", "Anatoliy", "Islam", "Gennadiy", "Marina", "Faina", "Nadezhda"]
     
     private lazy var taskListTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.separatorColor = .clear
         tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.identifier)
-        tableView.backgroundColor = #colorLiteral(red: 0.9449689984, green: 0.9488888383, blue: 0.9572290778, alpha: 1)
+        //tableView.backgroundColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
+        tableView.backgroundColor = .clear //прозрачный цвет
         tableView.layer.cornerRadius = 10
+        
         return tableView
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Task List"
+        view.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
         taskListTableView.dataSource = self
         taskListTableView.delegate = self
         addToSubview()
@@ -38,13 +41,13 @@ class TaskListViewController: UIViewController {
     }
     
     private func addToSubview() {
-        view.addSubview(backGroundImageView)
+        //view.addSubview(backGroundImageView)
         view.addSubview(taskListTableView)
     }
     
     private func addConstraints() {
         
-        backGroundImageView.frame = view.bounds
+        //backGroundImageView.frame = view.bounds
         
         NSLayoutConstraint.activate([
             taskListTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
@@ -56,30 +59,25 @@ class TaskListViewController: UIViewController {
 }
 
 extension TaskListViewController: UITableViewDataSource, UITableViewDelegate {
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        2
-//    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         users.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath) as? CustomTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath) as? CustomTableViewCell
+        else {
             return UITableViewCell()
         }
-        //let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        //cell.backgroundColor = .gray
-        //cell.textLabel?.text = users[indexPath.row]
         
         cell.configure(text: users[indexPath.row], imageName: "checkmark")
+        cell.backgroundColor = .clear
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
+        return 100 //высота ячейки
     }
-    
 }
     // про табл UITableViewCell - создать массив задач магаз... в станд ячейку перенести - заголовок и описание - навернуть все что есть  - закруглиь, дизайн таблицы ...
