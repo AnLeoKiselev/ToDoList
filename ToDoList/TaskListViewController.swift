@@ -9,14 +9,7 @@ import UIKit
 
 class TaskListViewController: UIViewController {
     
-//    private lazy var backGroundImageView: UIImageView = {
-//        let imageView = UIImageView()
-//        imageView.image = UIImage(named: "background2")
-//        imageView.translatesAutoresizingMaskIntoConstraints = false
-//        return imageView
-//    } ()
-    
-    private let users = ["Boris", "Anatoliy", "Islam", "Gennadiy", "Marina", "Faina", "Nadezhda"]
+    private let users = ["Помыть машину", "Помыть кота", "Сходить на работу", "Завоевать мир", "Найти жену", "Продать машину", "Купить кота", "Разбить гитару", "Сходить за дровами", "Купить биткойн"]
     
     private lazy var taskListTableView: UITableView = {
         let tableView = UITableView()
@@ -41,14 +34,11 @@ class TaskListViewController: UIViewController {
     }
     
     private func addToSubview() {
-        //view.addSubview(backGroundImageView)
         view.addSubview(taskListTableView)
     }
     
     private func addConstraints() {
-        
-        //backGroundImageView.frame = view.bounds
-        
+    
         NSLayoutConstraint.activate([
             taskListTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             taskListTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
