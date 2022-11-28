@@ -48,6 +48,8 @@ class CreateAccountViewController: UIViewController {
         return label
     }()
     
+    let label = UILabel()
+    
     private lazy var logInButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Log in", for: .normal)
@@ -95,9 +97,9 @@ class CreateAccountViewController: UIViewController {
         return button
     }()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setSubviews()
         addSubviewsToView()
         setSubviewsLayouts()

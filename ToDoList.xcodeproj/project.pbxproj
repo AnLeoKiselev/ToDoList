@@ -16,6 +16,7 @@
 		1C324F09292628E50032F899 /* PasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C324F08292628E50032F899 /* PasswordView.swift */; };
 		1C324F0B29269F140032F899 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C324F0A29269F140032F899 /* CreateAccountViewController.swift */; };
 		1C6750162934E67400C0F083 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6750152934E67400C0F083 /* CustomTableViewCell.swift */; };
+		1C675038293519BD00C0F083 /* LocalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C675037293519BC00C0F083 /* LocalStore.swift */; };
 		1CDA8E1D2927F8E50021E5F6 /* TaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDA8E1C2927F8E50021E5F6 /* TaskListViewController.swift */; };
 		1CDA8E1F292A174E0021E5F6 /* AddNewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDA8E1E292A174E0021E5F6 /* AddNewTaskViewController.swift */; };
 		1CDA8E21292A17990021E5F6 /* TaskEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDA8E20292A17990021E5F6 /* TaskEditorViewController.swift */; };
@@ -33,6 +34,7 @@
 		1C324F08292628E50032F899 /* PasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordView.swift; sourceTree = "<group>"; };
 		1C324F0A29269F140032F899 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		1C6750152934E67400C0F083 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		1C675037293519BC00C0F083 /* LocalStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStore.swift; sourceTree = "<group>"; };
 		1CDA8E1C2927F8E50021E5F6 /* TaskListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListViewController.swift; sourceTree = "<group>"; };
 		1CDA8E1E292A174E0021E5F6 /* AddNewTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewTaskViewController.swift; sourceTree = "<group>"; };
 		1CDA8E20292A17990021E5F6 /* TaskEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskEditorViewController.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 				1C324EF7291E91160032F899 /* Assets.xcassets */,
 				1C324EF9291E91160032F899 /* LaunchScreen.storyboard */,
 				1C324EFC291E91160032F899 /* Info.plist */,
+				1C675037293519BC00C0F083 /* LocalStore.swift */,
 			);
 			path = ToDoList;
 			sourceTree = "<group>";
@@ -161,6 +164,7 @@
 				1C324EF3291E91140032F899 /* LoginViewController.swift in Sources */,
 				1C324F07292521820032F899 /* EmailView.swift in Sources */,
 				1CDA8E21292A17990021E5F6 /* TaskEditorViewController.swift in Sources */,
+				1C675038293519BD00C0F083 /* LocalStore.swift in Sources */,
 				1C6750162934E67400C0F083 /* CustomTableViewCell.swift in Sources */,
 				1C324EEF291E91140032F899 /* AppDelegate.swift in Sources */,
 				1CDA8E1F292A174E0021E5F6 /* AddNewTaskViewController.swift in Sources */,

@@ -9,8 +9,10 @@ import UIKit
 
 class TaskListViewController: UIViewController {
     
-    private let users = ["Помыть машину", "Помыть кота", "Сходить на работу", "Завоевать мир", "Найти жену", "Продать машину", "Купить кота", "Разбить гитару", "Сходить за дровами", "Купить биткойн"]
+    private let mainLabel = ["Помыть машину", "Помыть кота", "Сходить на работу", "Завоевать мир", "Найти жену", "Продать машину", "Купить кота", "Разбить гитару", "Сходить за дровами", "Купить биткойн"]
     
+    private let descriptionLabel = ["Автомобиль", "Домашние дела", "А куда денешься ...", "Звоните психиатру!", "Давно пора", "Уже надоела?", "Был же уже кот", "Узбагойся!", "И еще за берестой", "Очень вовремя!"]
+
     private lazy var taskListTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -26,11 +28,16 @@ class TaskListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Task List"
-        view.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
+        view.backgroundColor = #colorLiteral(red: 0.5678169406, green: 0.3616148786, blue: 1, alpha: 1)
         taskListTableView.dataSource = self
         taskListTableView.delegate = self
         addToSubview()
         addConstraints()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        taskListTableView.reloadData()
     }
     
     private func addToSubview() {
@@ -48,10 +55,10 @@ class TaskListViewController: UIViewController {
     }
 }
 
-extension TaskListViewController: UITableViewDataSource, UITableViewDelegate {
+extension TaskListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        users.count
+        LocalStore.shared.taskArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -60,14 +67,25 @@ extension TaskListViewController: UITableViewDataSource, UITableViewDelegate {
             return UITableViewCell()
         }
         
-        cell.configure(text: users[indexPath.row], imageName: "checkmark")
+        cell.configure(mainLabelText: LocalStore.shared.taskArray[indexPath.row].mainname, descriptionLabelText: LocalStore.shared.taskArray[indexPath.row].descriptionName, imageName: "checkmark")
+        
         cell.backgroundColor = .clear
+        cell.selectionStyle = .none
         
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100 //высота ячейки
-    }
+    
 }
     // про табл UITableViewCell - создать массив задач магаз... в станд ячейку перенести - заголовок и описание - навернуть все что есть  - закруглиь, дизайн таблицы ...
+extension TaskListViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let addTaskViewController = AddNewTaskViewController()
+        navigationController?.pushViewController(addTaskViewController, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+            return 100 //высота ячейки
+        }
+}

@@ -204,6 +204,7 @@ class LoginViewController: UIViewController {
             noAccountLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 110),
             
             createAccountButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 9),
+            createAccountButton.heightAnchor.constraint(equalToConstant: 30),
             createAccountButton.leadingAnchor.constraint(equalTo: noAccountLabel.trailingAnchor, constant: 5)
         ])
     }

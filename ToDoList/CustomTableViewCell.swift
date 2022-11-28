@@ -21,6 +21,7 @@ class CustomTableViewCell: UITableViewCell {
     private let mainLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
+        label.backgroundColor = .red
         label.font = .systemFont(ofSize: 20,weight:.semibold)
         return label
     }()
@@ -28,7 +29,7 @@ class CustomTableViewCell: UITableViewCell {
     private let descriptionLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
-        label.text = "Домашние дела"
+        label.backgroundColor = .red
         label.font = .systemFont(ofSize: 17,weight:.light)
         return label
     }()
@@ -47,8 +48,9 @@ class CustomTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func configure(text: String, imageName: String) {
-        mainLabel.text = text
+    public func configure(mainLabelText: String, descriptionLabelText: String, imageName: String) {
+        mainLabel.text = mainLabelText
+        descriptionLabel.text = descriptionLabelText
         myImageView.image = UIImage(named: imageName)
     }
     
@@ -64,16 +66,17 @@ class CustomTableViewCell: UITableViewCell {
         contentView.frame = contentView.frame.inset(by: margins) //пробелы между ячейками
         
         let imageSize = contentView.frame.size.height/2.5
+        let width = contentView.frame.size.width - myImageView.frame.size.width - 40 * 3
         
         mainLabel.frame = CGRect(x: imageSize + 40,
-                               y: 17,
-                               width: 1000,
-                               height: 25)
+                                 y: 17,
+                                 width: width,
+                                 height: 25)
         
         descriptionLabel.frame = CGRect(x: imageSize + 40,
-                               y: mainLabel.frame.size.height + 20,
-                               width: 1000,
-                               height: 25)
+                                        y: mainLabel.frame.size.height + 20,
+                                        width: 1000,
+                                        height: 25)
         
         myImageView.frame = CGRect(x: 22,
                                    y: (contentView.frame.size.height-imageSize)/2,
