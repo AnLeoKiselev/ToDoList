@@ -22,10 +22,8 @@ class TaskListViewController: UIViewController {
     private lazy var taskListTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        //tableView.backgroundColor = .white
-        //tableView.dataSource = self
         tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.identifier)
-        //tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.backgroundColor = #colorLiteral(red: 0.9449689984, green: 0.9488888383, blue: 0.9572290778, alpha: 1)
         tableView.layer.cornerRadius = 10
         return tableView
     }()
@@ -74,13 +72,13 @@ extension TaskListViewController: UITableViewDataSource, UITableViewDelegate {
         //cell.backgroundColor = .gray
         //cell.textLabel?.text = users[indexPath.row]
         
-        cell.configure(text: users[indexPath.row], imageName: "bird")
+        cell.configure(text: users[indexPath.row], imageName: "checkmark")
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 70
     }
     
 }

@@ -10,16 +10,9 @@ import UIKit
 class CustomTableViewCell: UITableViewCell {
     static let identifier = "CustomTableViewCell"
     
-    private let _switch: UISwitch = {
-        let _switch = UISwitch()
-        _switch.isOn = true
-        _switch.onTintColor = .blue
-        return _switch
-    }()
-    
     private let myImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "bird")
+        //imageView.image = UIImage(named: "checkmark")
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
@@ -27,18 +20,17 @@ class CustomTableViewCell: UITableViewCell {
     
     private let myLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .white
+        label.textColor = .black
         label.font = .systemFont(ofSize: 17,weight:.bold)
-       // label.text = "Custom Cell"
         return label
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.backgroundColor = .systemMint
-        contentView.addSubview(_switch)
+        contentView.backgroundColor = #colorLiteral(red: 0.9564295411, green: 0.9725391269, blue: 0.9768132567, alpha: 1)
         contentView.addSubview(myImageView)
         contentView.addSubview(myLabel)
+        //contentView.layer.cornerRadius = 10
     }
     
     required init?(coder: NSCoder) {
@@ -58,22 +50,15 @@ class CustomTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        let imageSize = contentView.frame.size.height-6
+        let imageSize = contentView.frame.size.height/2
         
-        let switchSize = _switch.sizeThatFits(contentView.frame.size)
+        myLabel.frame = CGRect(x: imageSize + 20,
+                               y: (contentView.frame.size.height-myLabel.frame.size.height)/2,
+                               width: 100,
+                               height: 25)
         
-        _switch.frame = CGRect(x: 5,
-                               y: (contentView.frame.size.height-switchSize.height)/2,
-                               width: switchSize.width,
-                               height: switchSize.height)
-        
-        myLabel.frame = CGRect(x: 10+_switch.frame.size.width,
-                               y: 0,
-                               width: contentView.frame.size.width - 10 - _switch.frame.size.width - imageSize,
-                               height: contentView.frame.size.height)
-        
-        myImageView.frame = CGRect(x: contentView.frame.size.width-imageSize,
-                                   y: 3,
+        myImageView.frame = CGRect(x: 10,
+                                   y: (contentView.frame.size.height-imageSize)/2,
                                    width: imageSize,
                                    height: imageSize)
         
