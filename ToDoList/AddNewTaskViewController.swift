@@ -8,23 +8,6 @@
 import UIKit
 import SwiftUI //https://www.youtube.com/watch?v=KZTtktlBOeM
 
-struct ViewControllerPreview: UIViewControllerRepresentable {
-    let viewControllerGenerator: () -> UIViewController
-    
-    init(viewControllerGenerator: @escaping () -> UIViewController) {
-        self.viewControllerGenerator = viewControllerGenerator
-    }
-    
-    func makeUIViewController(context: Context) -> some UIViewController {
-        viewControllerGenerator()
-    }
-    
-    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
-        
-    }
-    
-}
-
 class AddNewTaskViewController: UIViewController {
     
     private lazy var mainTextField: UITextField = {
@@ -64,8 +47,6 @@ class AddNewTaskViewController: UIViewController {
 
 struct ViewControllerProvider: PreviewProvider {
     static var previews: some View {
-        ViewControllerPreview {
-            AddNewTaskViewController()
-        }.edgesIgnoringSafeArea(.all)
+        AddNewTaskViewController().showPreview()
     }
 }
