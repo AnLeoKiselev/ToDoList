@@ -11,7 +11,6 @@ import UIKit
 struct Task {
     var mainname: String
     var descriptionName: String
-    var status: Bool
 }
 
 class LocalStore {
@@ -21,7 +20,13 @@ class LocalStore {
     //let image = UIImage(systemName: <#T##String#>)
     
     var taskArray: [Task] = [
-        Task(mainname: "some to do", descriptionName: "go to school", status: false),
-        Task(mainname: "dsdsd", descriptionName: "dsdsdsd", status: false)
+//        Task(mainname: "some to do", descriptionName: "go to school", status: false),
+//        Task(mainname: "dsdsd", descriptionName: "dsdsdsd", status: false)
+        Task(mainname: "Помыть кота", descriptionName: "Домашние дела"),
+        Task(mainname: "Сходить на работу", descriptionName: "А куда денешься ..."),
+        Task(mainname: "Завоевать мир", descriptionName: "Звоните психиатру!"),
+        Task(mainname: "Найти жену", descriptionName: "Давно пора")
     ]
 }
+
+

@@ -9,10 +9,6 @@ import UIKit
 
 class TaskListViewController: UIViewController {
     
-    private let mainLabel = ["Помыть машину", "Помыть кота", "Сходить на работу", "Завоевать мир", "Найти жену", "Продать машину", "Купить кота", "Разбить гитару", "Сходить за дровами", "Купить биткойн"]
-    
-    private let descriptionLabel = ["Автомобиль", "Домашние дела", "А куда денешься ...", "Звоните психиатру!", "Давно пора", "Уже надоела?", "Был же уже кот", "Узбагойся!", "И еще за берестой", "Очень вовремя!"]
-
     private lazy var taskListTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false

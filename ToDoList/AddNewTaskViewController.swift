@@ -6,6 +6,24 @@
 //
 
 import UIKit
+import SwiftUI //https://www.youtube.com/watch?v=KZTtktlBOeM
+
+struct ViewControllerPreview: UIViewControllerRepresentable {
+    let viewControllerGenerator: () -> UIViewController
+    
+    init(viewControllerGenerator: @escaping () -> UIViewController) {
+        self.viewControllerGenerator = viewControllerGenerator
+    }
+    
+    func makeUIViewController(context: Context) -> some UIViewController {
+        viewControllerGenerator()
+    }
+    
+    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
+        
+    }
+    
+}
 
 class AddNewTaskViewController: UIViewController {
     
@@ -22,7 +40,7 @@ class AddNewTaskViewController: UIViewController {
         button.tintColor = .blue
         button.underlineText() //подчеркивание кнопки
         button.tintColor = .white
-        button.titleLabel?.font = UIFont(name: "Avenir Next Bold", size: 18)
+        button.titleLabel?.font = UIFont(name: "Avenir Next Bold", size: 28)
         button.addTarget(self, action: #selector(logInButtonTapped), for: .touchUpInside)
         button.frame = CGRect(x: 50, y: 210, width: 250, height: 50)
         return button
@@ -38,8 +56,16 @@ class AddNewTaskViewController: UIViewController {
     }
     
     @objc func logInButtonTapped() {
-        let newTask = Task(mainname: mainTextField.text!, descriptionName: "qwerty")
+        let newTask = Task(mainname: mainTextField.text!, descriptionName: mainTextField.text!)
         LocalStore.shared.taskArray.append(newTask)
         navigationController?.popViewController(animated: true)
+    }
+}
+
+struct ViewControllerProvider: PreviewProvider {
+    static var previews: some View {
+        ViewControllerPreview {
+            AddNewTaskViewController()
+        }.edgesIgnoringSafeArea(.all)
     }
 }

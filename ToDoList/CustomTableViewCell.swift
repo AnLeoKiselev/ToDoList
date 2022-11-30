@@ -21,7 +21,6 @@ class CustomTableViewCell: UITableViewCell {
     private let mainLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
-        label.backgroundColor = .red
         label.font = .systemFont(ofSize: 20,weight:.semibold)
         return label
     }()
@@ -29,7 +28,6 @@ class CustomTableViewCell: UITableViewCell {
     private let descriptionLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
-        label.backgroundColor = .red
         label.font = .systemFont(ofSize: 17,weight:.light)
         return label
     }()
