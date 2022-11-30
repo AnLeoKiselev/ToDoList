@@ -82,3 +82,4 @@ class CustomTableViewCell: UITableViewCell {
                                    height: imageSize)
     }
 }
+

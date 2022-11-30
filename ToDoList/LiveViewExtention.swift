@@ -23,3 +23,15 @@ extension UIViewController {
         Preview(viewController: self).edgesIgnoringSafeArea(.all)
     }
 }
+
+struct ViewControllerProvider: PreviewProvider {
+    static var previews: some View {
+        //TaskListViewController().showPreview()
+        //AddNewTaskViewController().showPreview()
+        //LoginViewController().showPreview()
+        CreateAccountViewController().showPreview()
+        //TaskEditorViewController().showPreview()
+    }
+}
+
+

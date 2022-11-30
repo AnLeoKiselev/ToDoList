@@ -6,6 +6,7 @@
 // https://www.youtube.com/watch?v=Pu7B7uEzP18
 
 import UIKit
+import SwiftUI
 
 class TaskListViewController: UIViewController {
     
@@ -82,6 +83,9 @@ extension TaskListViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-            return 100 //высота ячейки
-        }
+        return 100 //высота ячейки
+    }
+    
 }
+
+

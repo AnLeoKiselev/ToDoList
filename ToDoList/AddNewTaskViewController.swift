@@ -44,9 +44,3 @@ class AddNewTaskViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
 }
-
-struct ViewControllerProvider: PreviewProvider {
-    static var previews: some View {
-        AddNewTaskViewController().showPreview()
-    }
-}
