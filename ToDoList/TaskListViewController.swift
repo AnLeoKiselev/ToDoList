@@ -22,15 +22,49 @@ class TaskListViewController: UIViewController {
         return tableView
     }()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Task List"
-        view.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
+        //view.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
+        //view.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
+        view.backgroundColor = #colorLiteral(red: 0.1097827628, green: 0.1051032469, blue: 0.1424088478, alpha: 1)
+        
         taskListTableView.dataSource = self
         taskListTableView.delegate = self
+        createSegmentedControl()
         addToSubview()
         addConstraints()
         configureItems()
+    }
+    
+    func createSegmentedControl() {
+        let items = ["All", "In Progress", "Done"]
+        let segmentedControl = UISegmentedControl(items: items)
+        segmentedControl.addTarget(self, action: #selector(segmentedControlDidChange(_:)), for:.valueChanged)
+        segmentedControl.selectedSegmentTintColor = .white
+        segmentedControl.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
+        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(segmentedControl)
+        
+        NSLayoutConstraint.activate([
+            segmentedControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            segmentedControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            segmentedControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20)
+        ])
+    }
+    
+    @objc func segmentedControlDidChange(_ segmentedControl: UISegmentedControl) {
+        switch segmentedControl.selectedSegmentIndex {
+        case 0:
+            print ("0")
+        case 1:
+            print ("1")
+        case 2:
+            print ("2")
+        default:
+            print ("All")
+        }
     }
     
     private func configureItems() {
@@ -58,7 +92,8 @@ class TaskListViewController: UIViewController {
     
     private func addConstraints() {
         NSLayoutConstraint.activate([
-            taskListTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            
+            taskListTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 80),
             taskListTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
             taskListTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10),
             taskListTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10)
@@ -78,7 +113,7 @@ extension TaskListViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        cell.configure(mainLabelText: LocalStore.shared.taskArray[indexPath.row].mainname, descriptionLabelText: LocalStore.shared.taskArray[indexPath.row].descriptionName, imageName: "checkmark")
+        cell.configure(mainLabelText: LocalStore.shared.taskArray[indexPath.row].mainname, descriptionLabelText: LocalStore.shared.taskArray[indexPath.row].descriptionName, imageName: "checkmark.square")
         cell.backgroundColor = .clear
         cell.selectionStyle = .none
         return cell
@@ -86,7 +121,7 @@ extension TaskListViewController: UITableViewDataSource {
     
     
 }
-    // про табл UITableViewCell - создать массив задач магаз... в станд ячейку перенести - заголовок и описание - навернуть все что есть  - закруглиь, дизайн таблицы ...
+// про табл UITableViewCell - создать массив задач магаз... в станд ячейку перенести - заголовок и описание - навернуть все что есть  - закруглиь, дизайн таблицы ...
 extension TaskListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

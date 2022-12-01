@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class LoginViewController: UIViewController {
     
@@ -236,4 +237,9 @@ extension UIViewController { //клава убирается после тапа
     }
 }
 
+//struct ViewControllerProvider: PreviewProvider {
+//    static var previews: some View {
+//        LoginViewController().showPreview()
+//    }
+//}
 

@@ -24,14 +24,5 @@ extension UIViewController {
     }
 }
 
-//struct ViewControllerProvider: PreviewProvider {
-//    static var previews: some View {
-//        //TaskListViewController().showPreview()
-//        //AddNewTaskViewController().showPreview()
-//        //LoginViewController().showPreview()
-//        CreateAccountViewController().showPreview()
-//        //TaskEditorViewController().showPreview()
-//    }
-//}
 
 

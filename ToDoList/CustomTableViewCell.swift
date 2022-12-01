@@ -14,32 +14,34 @@ class CustomTableViewCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.layer.cornerRadius = 10
+        //imageView.layer.cornerRadius = 10
         return imageView
     }()
     
     private let mainLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .black
+        label.textColor = .white
         label.font = .systemFont(ofSize: 20,weight:.semibold)
         return label
     }()
     
     private let descriptionLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .black
+        label.textColor = .white
         label.font = .systemFont(ofSize: 17,weight:.light)
         return label
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.backgroundColor = #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1)
+        contentView.backgroundColor = #colorLiteral(red: 0.2274511456, green: 0.2183080614, blue: 0.2804787457, alpha: 1)
         
         contentView.addSubview(myImageView)
         contentView.addSubview(mainLabel)
         contentView.addSubview(descriptionLabel)
         contentView.layer.cornerRadius = 10
+        //contentView.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1) // !!!
+        //contentView.layer.borderWidth = 2
     }
     
     required init?(coder: NSCoder) {
