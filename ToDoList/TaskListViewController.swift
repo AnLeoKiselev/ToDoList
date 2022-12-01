@@ -25,12 +25,27 @@ class TaskListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Task List"
-        view.backgroundColor = #colorLiteral(red: 0.5678169406, green: 0.3616148786, blue: 1, alpha: 1)
+        view.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
         taskListTableView.dataSource = self
         taskListTableView.delegate = self
         addToSubview()
         addConstraints()
+        configureItems()
     }
+    
+    private func configureItems() {
+        
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont(name: "Avenir Next Bold", size: 22.0)!]
+        
+        navigationController?.navigationBar.tintColor = .white
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .add, target: self, action: #selector(openTaskViewController))
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sign Out", style: .done, target: self, action: #selector(logOutButtonTapped))
+        
+    }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -42,7 +57,6 @@ class TaskListViewController: UIViewController {
     }
     
     private func addConstraints() {
-    
         NSLayoutConstraint.activate([
             taskListTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             taskListTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
@@ -65,10 +79,8 @@ extension TaskListViewController: UITableViewDataSource {
         }
         
         cell.configure(mainLabelText: LocalStore.shared.taskArray[indexPath.row].mainname, descriptionLabelText: LocalStore.shared.taskArray[indexPath.row].descriptionName, imageName: "checkmark")
-        
         cell.backgroundColor = .clear
         cell.selectionStyle = .none
-        
         return cell
     }
     
@@ -78,14 +90,31 @@ extension TaskListViewController: UITableViewDataSource {
 extension TaskListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let addTaskViewController = AddNewTaskViewController()
-        navigationController?.pushViewController(addTaskViewController, animated: true)
+        let addTaskEditorViewController = TaskEditorViewController()  //нажат ряд
+        navigationController?.pushViewController(addTaskEditorViewController, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100 //высота ячейки
     }
     
+    @objc func openTaskViewController() {
+        let openNewTaskViewController = AddNewTaskViewController()
+        navigationController?.pushViewController(openNewTaskViewController, animated: true)
+    }
+    
+    @objc func logOutButtonTapped() {
+        
+        let loginViewController = LoginViewController()
+        navigationController?.pushViewController(loginViewController, animated: true)
+        
+        //navigationController?.popViewController(animated: true)
+    }
+    
+    struct ViewControllerProvider: PreviewProvider {
+        static var previews: some View {
+            TaskListViewController().showPreview()
+        }
+    }
+    
 }
-
-

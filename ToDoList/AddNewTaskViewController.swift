@@ -33,7 +33,7 @@ class AddNewTaskViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Add New Task"
-        view.backgroundColor = .green
+        view.backgroundColor = .systemMint
         view.addSubview(mainTextField)
         view.addSubview(logInButton)
     }
@@ -44,3 +44,13 @@ class AddNewTaskViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
 }
+
+//struct ViewControllerProvider: PreviewProvider {
+//    static var previews: some View {
+//        //TaskListViewController().showPreview()
+//        AddNewTaskViewController().showPreview()
+//        //LoginViewController().showPreview()
+//        //CreateAccountViewController().showPreview()
+//        //TaskEditorViewController().showPreview()
+//    }
+//}

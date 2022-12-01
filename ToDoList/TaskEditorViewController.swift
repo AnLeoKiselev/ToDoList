@@ -9,4 +9,11 @@ import UIKit
 
 class TaskEditorViewController: UIViewController {
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        title = "Edit Task"
+        view.backgroundColor = .darkGray
+        
+    }
+    
 }
