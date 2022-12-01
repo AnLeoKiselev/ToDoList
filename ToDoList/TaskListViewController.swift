@@ -10,6 +10,16 @@ import SwiftUI
 
 class TaskListViewController: UIViewController {
     
+    private lazy var segmentedControl: UISegmentedControl = {
+        let items = ["All", "In Progress", "Done"]
+        let control = UISegmentedControl(items: items)
+        control.selectedSegmentTintColor = .white
+        control.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
+        control.translatesAutoresizingMaskIntoConstraints = false
+        control.addTarget(self, action: #selector(segmentedControlDidChange(_:)), for:.valueChanged)
+        return control
+    }()
+    
     private lazy var taskListTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -22,36 +32,15 @@ class TaskListViewController: UIViewController {
         return tableView
     }()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Task List"
-        //view.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
-        //view.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
         view.backgroundColor = #colorLiteral(red: 0.1097827628, green: 0.1051032469, blue: 0.1424088478, alpha: 1)
-        
         taskListTableView.dataSource = self
         taskListTableView.delegate = self
-        createSegmentedControl()
         addToSubview()
         addConstraints()
         configureItems()
-    }
-    
-    func createSegmentedControl() {
-        let items = ["All", "In Progress", "Done"]
-        let segmentedControl = UISegmentedControl(items: items)
-        segmentedControl.addTarget(self, action: #selector(segmentedControlDidChange(_:)), for:.valueChanged)
-        segmentedControl.selectedSegmentTintColor = .white
-        segmentedControl.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
-        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(segmentedControl)
-        
-        NSLayoutConstraint.activate([
-            segmentedControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            segmentedControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-            segmentedControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20)
-        ])
     }
     
     @objc func segmentedControlDidChange(_ segmentedControl: UISegmentedControl) {
@@ -66,20 +55,18 @@ class TaskListViewController: UIViewController {
             print ("All")
         }
     }
-    
+
     private func configureItems() {
         
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont(name: "Avenir Next Bold", size: 22.0)!]
         
         navigationController?.navigationBar.tintColor = .white
-        
+
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             barButtonSystemItem: .add, target: self, action: #selector(openTaskViewController))
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sign Out", style: .done, target: self, action: #selector(logOutButtonTapped))
-        
     }
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -88,10 +75,15 @@ class TaskListViewController: UIViewController {
     
     private func addToSubview() {
         view.addSubview(taskListTableView)
+        view.addSubview(segmentedControl)
     }
     
     private func addConstraints() {
         NSLayoutConstraint.activate([
+            
+            segmentedControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            segmentedControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            segmentedControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             
             taskListTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 80),
             taskListTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
@@ -118,10 +110,8 @@ extension TaskListViewController: UITableViewDataSource {
         cell.selectionStyle = .none
         return cell
     }
-    
-    
 }
-// про табл UITableViewCell - создать массив задач магаз... в станд ячейку перенести - заголовок и описание - навернуть все что есть  - закруглиь, дизайн таблицы ...
+
 extension TaskListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -142,14 +132,11 @@ extension TaskListViewController: UITableViewDelegate {
         
         let loginViewController = LoginViewController()
         navigationController?.pushViewController(loginViewController, animated: true)
-        
-        //navigationController?.popViewController(animated: true)
     }
     
-    struct ViewControllerProvider: PreviewProvider {
-        static var previews: some View {
-            TaskListViewController().showPreview()
-        }
-    }
-    
+//    struct ViewControllerProvider: PreviewProvider {
+//        static var previews: some View {
+//            TaskListViewController().showPreview()
+//        }
+//    }
 }

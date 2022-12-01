@@ -42,7 +42,7 @@ class CreateAccountViewController: UIViewController {
     
     private lazy var alreadyhaveAnAccountLabel: UILabel = {
         let label = UILabel()
-        label.text = "Already have an account?"
+        label.text = "Already have an account? "
         label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         label.font = UIFont(name: "Avenir Next", size: 18)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -53,7 +53,7 @@ class CreateAccountViewController: UIViewController {
     
     private lazy var logInButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Log in", for: .normal)
+        button.setTitle(" Log in", for: .normal)
         button.tintColor = .blue
         button.underlineText() //подчеркивание кнопки
         button.tintColor = .white
@@ -98,12 +98,19 @@ class CreateAccountViewController: UIViewController {
         return button
     }()
     
+    private lazy var accountStackView: UIStackView = {
+        let stackview = UIStackView()
+        stackview.translatesAutoresizingMaskIntoConstraints = false
+        return stackview
+    } ()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setSubviews()
         addSubviewsToView()
         setSubviewsLayouts()
+        addToStackView()
         self.hideKeyboardWhenTappedAround() //клава убирается после тапа везде, в LoginViewController есть extention
     }
     
@@ -129,8 +136,12 @@ class CreateAccountViewController: UIViewController {
         view.addSubview(mainLabel)
         view.addSubview(emailSmallLabel)
         view.addSubview(passwordSmallLabel)
-        view.addSubview(alreadyhaveAnAccountLabel)
-        view.addSubview(logInButton)
+        view.addSubview(accountStackView)
+    }
+    
+    func addToStackView() {
+        accountStackView.addArrangedSubview(alreadyhaveAnAccountLabel)
+        accountStackView.addArrangedSubview(logInButton)
     }
     
     @objc func logInButtonTapped() {
@@ -179,11 +190,15 @@ class CreateAccountViewController: UIViewController {
             passwordSmallLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             passwordSmallLabel.heightAnchor.constraint(equalToConstant: 25),
             
-            alreadyhaveAnAccountLabel.topAnchor.constraint(equalTo: createAccountButton.bottomAnchor, constant: 15),
-            alreadyhaveAnAccountLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 77),
+            accountStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            accountStackView.topAnchor.constraint(equalTo: createAccountButton.bottomAnchor, constant: 15)
             
-            logInButton.topAnchor.constraint(equalTo: createAccountButton.bottomAnchor, constant: 9),
-            logInButton.leadingAnchor.constraint(equalTo: alreadyhaveAnAccountLabel.trailingAnchor, constant: 5)
+            
+//            alreadyhaveAnAccountLabel.topAnchor.constraint(equalTo: createAccountButton.bottomAnchor, constant: 15),
+//            alreadyhaveAnAccountLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 77),
+//
+//            logInButton.topAnchor.constraint(equalTo: createAccountButton.bottomAnchor, constant: 9),
+//            logInButton.leadingAnchor.constraint(equalTo: alreadyhaveAnAccountLabel.trailingAnchor, constant: 5)
         ])
     }
 }

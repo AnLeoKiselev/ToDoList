@@ -43,7 +43,7 @@ class LoginViewController: UIViewController {
     
     private lazy var noAccountLabel: UILabel = {
         let label = UILabel()
-        label.text = "No account?"
+        label.text = "No account? "
         label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         label.font = UIFont(name: "Avenir Next", size: 18)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -52,7 +52,7 @@ class LoginViewController: UIViewController {
     
     private lazy var createAccountButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Create one", for: .normal)
+        button.setTitle(" Create one", for: .normal)
         button.tintColor = .blue
         button.underlineText() //подчеркивание кнопки
         button.tintColor = .white
@@ -61,6 +61,12 @@ class LoginViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+    
+    private lazy var accountStackView: UIStackView = {
+        let stackview = UIStackView()
+        stackview.translatesAutoresizingMaskIntoConstraints = false
+        return stackview
+    } ()
     
     private lazy var backGroundImageView: UIImageView = {
         let imageView = UIImageView()
@@ -104,10 +110,9 @@ class LoginViewController: UIViewController {
         setSubviews()
         addSubviewsToView()
         setSubviewsLayouts()
+        addToStackView()
         
-        //emailView.emailTextField.backgroundColor = .red
         self.hideKeyboardWhenTappedAround() //клава убирается после тапа везде
-        
     }
 
     private func setSubviews() {
@@ -132,9 +137,14 @@ class LoginViewController: UIViewController {
         view.addSubview(mainLabel)
         view.addSubview(emailSmallLabel)
         view.addSubview(passwordSmallLabel)
-        view.addSubview(noAccountLabel)
-        view.addSubview(createAccountButton)
+        view.addSubview(accountStackView)
     }
+    
+    func addToStackView() {
+        accountStackView.addArrangedSubview(noAccountLabel)
+        accountStackView.addArrangedSubview(createAccountButton)
+    }
+    
     
     @objc func createAccountButtonTapped() {
         present(CreateAccountViewController(), animated: true)      //экраны до главного, уничтожатся
@@ -148,15 +158,6 @@ class LoginViewController: UIViewController {
         navigationController.modalPresentationStyle = .fullScreen
         
         present(navigationController, animated: true)  //present - показали и убрали
-        
-        
-        
-        //сверстать кнопки, детальная задача, экран добавления задачи - разных цветов и тайтлы
-
-        
-        
-        
-        
     }
     
     private func setSubviewsLayouts() {
@@ -201,12 +202,8 @@ class LoginViewController: UIViewController {
             passwordSmallLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             passwordSmallLabel.heightAnchor.constraint(equalToConstant: 25),
             
-            noAccountLabel.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 15),
-            noAccountLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 110),
-            
-            createAccountButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 9),
-            createAccountButton.heightAnchor.constraint(equalToConstant: 30),
-            createAccountButton.leadingAnchor.constraint(equalTo: noAccountLabel.trailingAnchor, constant: 5)
+            accountStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            accountStackView.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 15)
         ])
     }
 }
@@ -237,9 +234,9 @@ extension UIViewController { //клава убирается после тапа
     }
 }
 
-//struct ViewControllerProvider: PreviewProvider {
-//    static var previews: some View {
-//        LoginViewController().showPreview()
-//    }
-//}
+struct ViewControllerProvider: PreviewProvider {
+    static var previews: some View {
+        LoginViewController().showPreview()
+    }
+}
 
