@@ -234,9 +234,9 @@ extension UIViewController { //клава убирается после тапа
     }
 }
 
-struct ViewControllerProvider: PreviewProvider {
-    static var previews: some View {
-        LoginViewController().showPreview()
-    }
-}
+//struct ViewControllerProvider: PreviewProvider {
+//    static var previews: some View {
+//        LoginViewController().showPreview()
+//    }
+//}
 

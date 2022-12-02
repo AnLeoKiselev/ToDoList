@@ -41,12 +41,66 @@ class TaskListViewController: UIViewController {
         addToSubview()
         addConstraints()
         configureItems()
+        //setNeedsStatusBarAppearanceUpdate()
     }
+    
+    
+    
+//    var isDark = false {
+//        didSet {
+//            setNeedsStatusBarAppearanceUpdate()
+//        }
+//    }
+//
+//    override var preferredStatusBarStyle: UIStatusBarStyle {
+//        return isDark ? .lightContent : .default
+//    }
+//
+//    func toggleAppearance() {
+//       isDark.toggle()
+//    }
+
+    
+//    override var preferredStatusBarStyle: UIStatusBarStyle {
+//
+//        return UIStatusBarStyle.darkContent
+//    }
+    
+//    var statusBarStyle: UIStatusBarStyle {
+//        return UIStatusBarStyle.darkContent
+//    }
+    
+//    override var preferredStatusBarStyle: UIStatusBarStyle {
+//        return .darkContent
+//    }
+    
+//
+//
+//    override var preferredStatusBarStyle: UIStatusBarStyle {
+//            return self.style
+//        }
+//        var style:UIStatusBarStyle = .default
+//
+//
+//        func changeStyle() {
+//            var style:UIStatusBarStyle = .default
+//            if self.style == .lightContent {
+//                self.style = .default
+//            } else {
+//                self.style = .lightContent
+//            }
+//            setNeedsStatusBarAppearanceUpdate()
+//        }
+//
+    
+    
+    
     
     @objc func segmentedControlDidChange(_ segmentedControl: UISegmentedControl) {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
             print ("0")
+            //toggleAppearance()
         case 1:
             print ("1")
         case 2:
@@ -140,3 +194,12 @@ extension TaskListViewController: UITableViewDelegate {
 //        }
 //    }
 }
+
+
+extension UINavigationController {
+   open override var preferredStatusBarStyle: UIStatusBarStyle {
+      return topViewController?.preferredStatusBarStyle ?? .darkContent
+   }
+}
+
+
