@@ -11,12 +11,13 @@ import SwiftUI
 class TaskListViewController: UIViewController {
     
     private lazy var segmentedControl: UISegmentedControl = {
-        let items = ["All", "In Progress", "Done"]
+        let items = ["All", "To Do", "Done"]
         let control = UISegmentedControl(items: items)
         control.selectedSegmentTintColor = .white
         control.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
         control.translatesAutoresizingMaskIntoConstraints = false
         control.addTarget(self, action: #selector(segmentedControlDidChange(_:)), for:.valueChanged)
+        control.selectedSegmentIndex = 0
         return control
     }()
     
@@ -25,7 +26,6 @@ class TaskListViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorColor = .clear
         tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.identifier)
-        //tableView.backgroundColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
         tableView.backgroundColor = .clear //прозрачный цвет
         tableView.layer.cornerRadius = 10
         
@@ -41,66 +41,12 @@ class TaskListViewController: UIViewController {
         addToSubview()
         addConstraints()
         configureItems()
-        //setNeedsStatusBarAppearanceUpdate()
     }
-    
-    
-    
-//    var isDark = false {
-//        didSet {
-//            setNeedsStatusBarAppearanceUpdate()
-//        }
-//    }
-//
-//    override var preferredStatusBarStyle: UIStatusBarStyle {
-//        return isDark ? .lightContent : .default
-//    }
-//
-//    func toggleAppearance() {
-//       isDark.toggle()
-//    }
-
-    
-//    override var preferredStatusBarStyle: UIStatusBarStyle {
-//
-//        return UIStatusBarStyle.darkContent
-//    }
-    
-//    var statusBarStyle: UIStatusBarStyle {
-//        return UIStatusBarStyle.darkContent
-//    }
-    
-//    override var preferredStatusBarStyle: UIStatusBarStyle {
-//        return .darkContent
-//    }
-    
-//
-//
-//    override var preferredStatusBarStyle: UIStatusBarStyle {
-//            return self.style
-//        }
-//        var style:UIStatusBarStyle = .default
-//
-//
-//        func changeStyle() {
-//            var style:UIStatusBarStyle = .default
-//            if self.style == .lightContent {
-//                self.style = .default
-//            } else {
-//                self.style = .lightContent
-//            }
-//            setNeedsStatusBarAppearanceUpdate()
-//        }
-//
-    
-    
-    
     
     @objc func segmentedControlDidChange(_ segmentedControl: UISegmentedControl) {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
             print ("0")
-            //toggleAppearance()
         case 1:
             print ("1")
         case 2:
@@ -109,17 +55,17 @@ class TaskListViewController: UIViewController {
             print ("All")
         }
     }
-
+    
     private func configureItems() {
         
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont(name: "Avenir Next Bold", size: 22.0)!]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont(name: "Avenir Next Bold", size: 20.0)!]
         
         navigationController?.navigationBar.tintColor = .white
-
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             barButtonSystemItem: .add, target: self, action: #selector(openTaskViewController))
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sign Out", style: .done, target: self, action: #selector(logOutButtonTapped))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logOutButtonTapped))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -159,7 +105,8 @@ extension TaskListViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        cell.configure(mainLabelText: LocalStore.shared.taskArray[indexPath.row].mainname, descriptionLabelText: LocalStore.shared.taskArray[indexPath.row].descriptionName, imageName: "checkmark.square")
+        cell.configure(mainLabelText: LocalStore.shared.taskArray[indexPath.row].mainname, descriptionLabelText: //LocalStore.shared.taskArray[indexPath.row].descriptionName, imageName: "checkmark.square.fill 2")
+        LocalStore.shared.taskArray[indexPath.row].descriptionName, imageName: "checkmark.square 2")
         cell.backgroundColor = .clear
         cell.selectionStyle = .none
         return cell
@@ -187,19 +134,5 @@ extension TaskListViewController: UITableViewDelegate {
         let loginViewController = LoginViewController()
         navigationController?.pushViewController(loginViewController, animated: true)
     }
+}
     
-//    struct ViewControllerProvider: PreviewProvider {
-//        static var previews: some View {
-//            TaskListViewController().showPreview()
-//        }
-//    }
-}
-
-
-extension UINavigationController {
-   open override var preferredStatusBarStyle: UIStatusBarStyle {
-      return topViewController?.preferredStatusBarStyle ?? .darkContent
-   }
-}
-
-

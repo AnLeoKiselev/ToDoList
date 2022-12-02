@@ -14,7 +14,7 @@ class TaskEditorViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Edit Task"
-        view.backgroundColor = #colorLiteral(red: 0.2274511456, green: 0.2183080614, blue: 0.2804787457, alpha: 1)
+        view.backgroundColor = #colorLiteral(red: 0.1097827628, green: 0.1051032469, blue: 0.1424088478, alpha: 1)
         
     }
     

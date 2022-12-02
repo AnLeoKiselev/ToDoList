@@ -10,12 +10,16 @@ import SwiftUI //https://www.youtube.com/watch?v=KZTtktlBOeM
 
 class AddNewTaskViewController: UIViewController {
     
-    private lazy var newTaskTextField: UITextField = {
-        let textField = UITextField()
-        textField.backgroundColor = .white
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.layer.cornerRadius = 10
-        return textField
+    private lazy var newTaskTextField: UITextView = {
+        let textView = UITextView()
+        textView.backgroundColor = #colorLiteral(red: 0.2274511456, green: 0.2183080614, blue: 0.2804787457, alpha: 1)
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        textView.textColor = .white
+        textView.font = UIFont(name: "Avenir Next Bold", size: 20)
+        textView.layer.cornerRadius = 10
+        textView.textAlignment = .left
+        
+        return textView
     }()
     
     private lazy var addTaskButton: UIButton = {
@@ -34,7 +38,7 @@ class AddNewTaskViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Add New Task"
-        view.backgroundColor = #colorLiteral(red: 0.2274511456, green: 0.2183080614, blue: 0.2804787457, alpha: 1)
+        view.backgroundColor = #colorLiteral(red: 0.1097827628, green: 0.1051032469, blue: 0.1424088478, alpha: 1)
         view.addSubview(newTaskTextField)
         view.addSubview(addTaskButton)
         setSubviewsLayouts()
