@@ -26,7 +26,8 @@ class LocalStore {
         Task(mainname: "Сходить на работу", descriptionName: "А куда денешься ..."),
         Task(mainname: "Завоевать мир", descriptionName: "Звоните психиатру!"),
         Task(mainname: "Найти жену", descriptionName: "Давно пора")
+        
     ]
 }
 
-
+//LocalStore.shared.taskArray.append(newTask)

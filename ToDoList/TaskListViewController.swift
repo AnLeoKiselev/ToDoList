@@ -21,6 +21,7 @@ class TaskListViewController: UIViewController {
         return control
     }()
     
+    
     private lazy var taskListTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -47,6 +48,7 @@ class TaskListViewController: UIViewController {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
             print ("0")
+            taskListTableView.reloadData()
         case 1:
             print ("1")
         case 2:
@@ -67,12 +69,7 @@ class TaskListViewController: UIViewController {
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logOutButtonTapped))
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        taskListTableView.reloadData()
-    }
-    
+
     private func addToSubview() {
         view.addSubview(taskListTableView)
         view.addSubview(segmentedControl)
@@ -91,6 +88,20 @@ class TaskListViewController: UIViewController {
             taskListTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10)
         ])
     }
+    
+    func reloadData() {
+        //taskListTableView.reloadData()
+        
+        if self.viewIfLoaded?.window != nil {
+            print ("виден")
+        }
+        
+        taskListTableView.backgroundColor = .red
+        //taskListTableView.reloadData()
+        print ("привкте")
+        //taskListTableView.backgroundColor = .systemMint
+    }
+    
 }
 
 extension TaskListViewController: UITableViewDataSource {
@@ -125,9 +136,20 @@ extension TaskListViewController: UITableViewDelegate {
     }
     
     @objc func openTaskViewController() {
+        //let openNewTaskViewController = AddNewTaskViewController()
+       // navigationController?.pushViewController(openNewTaskViewController, animated: true)
         let openNewTaskViewController = AddNewTaskViewController()
-        navigationController?.pushViewController(openNewTaskViewController, animated: true)
+//        navigationController?.modalPresentationStyle = .pageSheet
+//
+        present(openNewTaskViewController, animated: true)  //present - показали и убрали
     }
+    
+//    openTaskViewController() {
+//        let openNewTaskViewController = AddNewTaskViewController()
+//        navigationController?.pushViewController(openNewTaskViewController, animated: true)
+//    }
+    
+    
     
     @objc func logOutButtonTapped() {
         
