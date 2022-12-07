@@ -34,9 +34,9 @@ class AddNewTaskViewController: UIViewController, UISheetPresentationControllerD
     
     private lazy var mainNameTextField: UITextField = {
         let textField = UITextField()
-        textField.backgroundColor = #colorLiteral(red: 0.2274511456, green: 0.2183080614, blue: 0.2804787457, alpha: 1)
+        textField.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.textColor = .white
+        textField.textColor = .black
         textField.font = UIFont(name: "Avenir Next", size: 20)
         textField.layer.cornerRadius = 10
         textField.textAlignment = .left
@@ -46,9 +46,9 @@ class AddNewTaskViewController: UIViewController, UISheetPresentationControllerD
     
     private lazy var descriptionTextField: UITextView = {
         let textView = UITextView()
-        textView.backgroundColor = #colorLiteral(red: 0.2274511456, green: 0.2183080614, blue: 0.2804787457, alpha: 1)
+        textView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.textColor = .white
+        textView.textColor = .black
         textView.font = UIFont(name: "Avenir Next", size: 20)
         textView.layer.cornerRadius = 10
         textView.textAlignment = .left
@@ -72,7 +72,7 @@ class AddNewTaskViewController: UIViewController, UISheetPresentationControllerD
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Add New Task"
-        view.backgroundColor = #colorLiteral(red: 0.1097827628, green: 0.1051032469, blue: 0.1424088478, alpha: 1)
+        view.backgroundColor = #colorLiteral(red: 0.2274511456, green: 0.2183080614, blue: 0.2804787457, alpha: 1)
         view.addSubview(mainLabel)
         view.addSubview(mainNameTextField)
         view.addSubview (descriptionLabel)
@@ -88,7 +88,7 @@ class AddNewTaskViewController: UIViewController, UISheetPresentationControllerD
     }
     
     @objc func addNewTaskButtonTapped() {
-        let newTask = Task(mainname: mainNameTextField.text!, descriptionName: descriptionTextField.text!)
+        let newTask = Task(mainname: mainNameTextField.text!, descriptionName: descriptionTextField.text!, status: false)
         LocalStore.shared.taskArray.append(newTask)
         TaskListViewController().reloadData()
         

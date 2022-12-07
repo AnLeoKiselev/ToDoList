@@ -56,6 +56,7 @@ class CustomTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         mainLabel.text = nil
+        descriptionLabel.text = nil
         myImageView.image = nil
     }
     

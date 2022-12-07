@@ -10,15 +10,17 @@ import SwiftUI
 
 class TaskListViewController: UIViewController {
     
+var segmentedControlPosition = ""
+    
     private lazy var segmentedControl: UISegmentedControl = {
         let items = ["All", "To Do", "Done"]
-        let control = UISegmentedControl(items: items)
-        control.selectedSegmentTintColor = .white
-        control.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
-        control.translatesAutoresizingMaskIntoConstraints = false
-        control.addTarget(self, action: #selector(segmentedControlDidChange(_:)), for:.valueChanged)
-        control.selectedSegmentIndex = 0
-        return control
+        let segmentedControl = UISegmentedControl(items: items)
+        segmentedControl.selectedSegmentTintColor = .white
+        segmentedControl.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
+        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
+        segmentedControl.addTarget(self, action: #selector(segmentedControlDidChange(_:)), for:.valueChanged)
+        segmentedControl.selectedSegmentIndex = 0
+        return segmentedControl
     }()
     
     
@@ -36,6 +38,11 @@ class TaskListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Task List"
+        
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        self.navigationController?.navigationBar.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
+        self.navigationController?.navigationBar.barStyle = UIBarStyle.black
+        
         view.backgroundColor = #colorLiteral(red: 0.1097827628, green: 0.1051032469, blue: 0.1424088478, alpha: 1)
         taskListTableView.dataSource = self
         taskListTableView.delegate = self
@@ -47,14 +54,17 @@ class TaskListViewController: UIViewController {
     @objc func segmentedControlDidChange(_ segmentedControl: UISegmentedControl) {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            print ("0")
+            segmentedControlPosition = "All"
+            
             taskListTableView.reloadData()
         case 1:
-            print ("1")
+            segmentedControlPosition = "ToDo"
+            taskListTableView.reloadData()
         case 2:
-            print ("2")
+            segmentedControlPosition = "Done"
+            taskListTableView.reloadData()
         default:
-            print ("All")
+            segmentedControlPosition = "All"
         }
     }
     
@@ -89,18 +99,16 @@ class TaskListViewController: UIViewController {
         ])
     }
     
-    func reloadData() {
-        //taskListTableView.reloadData()
-        
-        if self.viewIfLoaded?.window != nil {
-            print ("виден")
-        }
-        
-        taskListTableView.backgroundColor = .red
-        //taskListTableView.reloadData()
-        print ("привкте")
-        //taskListTableView.backgroundColor = .systemMint
-    }
+       
+//        if self.viewIfLoaded?.window != nil {
+//            print ("виден")
+//        }
+//
+//        taskListTableView.backgroundColor = .red
+//        //taskListTableView.reloadData()
+//        print ("привкте")
+//        //taskListTableView.backgroundColor = .systemMint
+//    }
     
 }
 
@@ -116,15 +124,44 @@ extension TaskListViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        cell.configure(mainLabelText: LocalStore.shared.taskArray[indexPath.row].mainname, descriptionLabelText: //LocalStore.shared.taskArray[indexPath.row].descriptionName, imageName: "checkmark.square.fill 2")
-        LocalStore.shared.taskArray[indexPath.row].descriptionName, imageName: "checkmark.square 2")
+        if segmentedControlPosition == "All" {
+ 
+            cell.configure(mainLabelText: LocalStore.shared.taskArray[indexPath.row].mainname, descriptionLabelText:
+                            LocalStore.shared.taskArray[indexPath.row].descriptionName, imageName: ((LocalStore.shared.taskArray[indexPath.row].status == false) ? "circle" : "checkmark.circle.fill 1"))
+            
+        } else if segmentedControlPosition == "ToDo" {
+            
+            if LocalStore.shared.taskArray[indexPath.row].status == false {
+                cell.configure(mainLabelText: LocalStore.shared.taskArray[indexPath.row].mainname, descriptionLabelText:
+                                LocalStore.shared.taskArray[indexPath.row].descriptionName, imageName: "circle")
+            }
+            
+        } else if segmentedControlPosition == "Done"{
+            
+            if LocalStore.shared.taskArray[indexPath.row].status == true {
+                cell.configure(mainLabelText: LocalStore.shared.taskArray[indexPath.row].mainname, descriptionLabelText:
+                                LocalStore.shared.taskArray[indexPath.row].descriptionName, imageName: "checkmark.circle.fill 1")
+            }
+        }
+        
         cell.backgroundColor = .clear
         cell.selectionStyle = .none
         return cell
     }
+    
+    func reloadData() {
+    taskListTableView.reloadData()
+        taskListTableView.backgroundColor = .red
+        print ("!")
+}
+    
 }
 
+
+
 extension TaskListViewController: UITableViewDelegate {
+    
+//Нажатие ряда таблицы
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let addTaskEditorViewController = TaskEditorViewController()  //нажат ряд
@@ -154,7 +191,8 @@ extension TaskListViewController: UITableViewDelegate {
     @objc func logOutButtonTapped() {
         
         let loginViewController = LoginViewController()
-        navigationController?.pushViewController(loginViewController, animated: true)
+        //navigationController?.pushViewController(loginViewController, animated: true)
+        self.dismiss(animated: true, completion: nil)
     }
 }
     
