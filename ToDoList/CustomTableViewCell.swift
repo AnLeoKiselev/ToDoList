@@ -14,9 +14,17 @@ class CustomTableViewCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        //imageView.layer.cornerRadius = 10
+            //imageView.layer.cornerRadius = 10
         return imageView
     }()
+    
+    private lazy var myButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.addTarget(self, action: #selector(myButtonTapped), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     
     private let mainLabel: UILabel = {
         let label = UILabel()
@@ -36,7 +44,7 @@ class CustomTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.backgroundColor = #colorLiteral(red: 0.2274511456, green: 0.2183080614, blue: 0.2804787457, alpha: 1)
         
-        contentView.addSubview(myImageView)
+        contentView.addSubview(myButton)
         contentView.addSubview(mainLabel)
         contentView.addSubview(descriptionLabel)
         contentView.layer.cornerRadius = 10
@@ -51,13 +59,17 @@ class CustomTableViewCell: UITableViewCell {
     public func configure(mainLabelText: String, descriptionLabelText: String, imageName: String) {
         mainLabel.text = mainLabelText
         descriptionLabel.text = descriptionLabelText
-        myImageView.image = UIImage(named: imageName)
+        myButton.setBackgroundImage(UIImage(named: imageName), for: UIControl.State.normal)
     }
     
     override func prepareForReuse() {
         mainLabel.text = nil
         descriptionLabel.text = nil
         myImageView.image = nil
+    }
+    
+    @objc private func myButtonTapped() {
+        print ("!")
     }
     
     override func layoutSubviews() {
@@ -79,7 +91,7 @@ class CustomTableViewCell: UITableViewCell {
                                         width: 1000,
                                         height: 25)
         
-        myImageView.frame = CGRect(x: 22,
+        myButton.frame = CGRect(x: 22,
                                    y: (contentView.frame.size.height-imageSize)/2,
                                    width: imageSize,
                                    height: imageSize)
