@@ -7,6 +7,7 @@
 
 import UIKit
 import SwiftUI
+import AudioToolbox
 
 class TaskListViewController: UIViewController {
     
@@ -76,12 +77,21 @@ class TaskListViewController: UIViewController {
         case 0:
             segmentedControlPosition = "All"
             taskListTableView.reloadData()
+            //vibration
+            let generator = UISelectionFeedbackGenerator()
+            generator.selectionChanged()
         case 1:
             segmentedControlPosition = "ToDo"
             taskListTableView.reloadData()
+            //vibration
+            let generator = UISelectionFeedbackGenerator()
+            generator.selectionChanged()
         case 2:
             segmentedControlPosition = "Done"
             taskListTableView.reloadData()
+            //vibration
+            let generator = UISelectionFeedbackGenerator()
+            generator.selectionChanged()
         default:
             segmentedControlPosition = "All"
         }
@@ -156,6 +166,10 @@ extension TaskListViewController: UITableViewDelegate {
     
     //Нажатие ряда таблицы
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //vibration
+        let generator = UISelectionFeedbackGenerator()
+        generator.selectionChanged()
+        
         let addTaskEditorViewController = TaskEditorViewController()  //нажат ряд
         navigationController?.pushViewController(addTaskEditorViewController, animated: true)
     }
@@ -166,12 +180,17 @@ extension TaskListViewController: UITableViewDelegate {
     
     @objc func openTaskViewController() {
         let openNewTaskViewController = AddNewTaskViewController()
+        //vibration
+        let generator = UISelectionFeedbackGenerator()
+        generator.selectionChanged()
         present(openNewTaskViewController, animated: true)  //present - показали и убрали
     }
     
     @objc func logOutButtonTapped() {
-        
         let loginViewController = LoginViewController()
+        //vibration
+        let generator = UISelectionFeedbackGenerator()
+        generator.selectionChanged()
         self.dismiss(animated: true, completion: nil)
     }
 }

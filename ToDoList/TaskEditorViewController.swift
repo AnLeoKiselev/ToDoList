@@ -13,7 +13,6 @@ class TaskEditorViewController: UIViewController {
     private lazy var backGroundImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "background2")
-        //imageView.alpha = 0.3
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     } ()
@@ -43,7 +42,7 @@ class TaskEditorViewController: UIViewController {
         textField.textColor = .black
         textField.font = UIFont(name: "Avenir Next", size: 20)
         textField.layer.cornerRadius = 10
-        textField.layer.borderColor = #colorLiteral(red: 0.459498167, green: 0.385009408, blue: 0.6544987559, alpha: 1)
+        textField.layer.borderColor = #colorLiteral(red: 0.344005015, green: 0.2886810107, blue: 0.4924146581, alpha: 1)
         textField.layer.borderWidth = 1
         textField.textAlignment = .left
         
@@ -57,49 +56,58 @@ class TaskEditorViewController: UIViewController {
         textView.textColor = .black
         textView.font = UIFont(name: "Avenir Next", size: 20)
         textView.layer.cornerRadius = 10
-        textView.layer.borderColor = #colorLiteral(red: 0.459498167, green: 0.385009408, blue: 0.6544987559, alpha: 1)
+        textView.layer.borderColor = #colorLiteral(red: 0.344005015, green: 0.2886810107, blue: 0.4924146581, alpha: 1)
         textView.layer.borderWidth = 1
         textView.textAlignment = .left
         
         return textView
     }()
     
-    private lazy var addTaskButton: UIButton = {
+    private lazy var saveTaskButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Save", for: .normal)
         button.backgroundColor = #colorLiteral(red: 0.7490196078, green: 0.3529411765, blue: 0.9490196078, alpha: 1)
         button.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         button.layer.cornerRadius = 10
         button.titleLabel?.font = UIFont(name: "Avenir Next Bold", size: 20)
-        button.addTarget(self, action: #selector(editTaskButtonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(saveTaskButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(backGroundImageView)
         title = "Edit Task"
-        //view.backgroundColor = #colorLiteral(red: 0.1097827628, green: 0.1051032469, blue: 0.1424088478, alpha: 1)
+        addToSubview()
+        configureItems()
+        setSubviewsLayouts()
+    }
+    
+    private func configureItems(){
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Mark as Done", style: .done, target: self, action: #selector(markAsDoneButtonTapped))
+    }
+    
+    private func addToSubview() {
+        view.addSubview(backGroundImageView)
         view.addSubview(mainLabel)
         view.addSubview(mainNameTextField)
         view.addSubview(descriptionLabel)
         view.addSubview(descriptionTextField)
-        view.addSubview(addTaskButton)
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Task is Done", style: .done, target: self, action: #selector(editTaskButtonTapped))
-        
-        setSubviewsLayouts()
-        
+        view.addSubview(saveTaskButton)
     }
     
-    @objc func editTaskButtonTapped() {
-        //let newTask = Task(mainname: mainNameTextField.text!, descriptionName: descriptionTextField.text!,status: false)
-        //LocalStore.shared.taskArray.append(newTask)
-        //TaskListViewController().reloadData()
-        
+    @objc func saveTaskButtonTapped() {
+        //vibration
+        let generator = UISelectionFeedbackGenerator()
+        generator.selectionChanged()
         navigationController?.popViewController(animated: true)
-        //self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func markAsDoneButtonTapped() {
+        //vibration
+        let generator = UISelectionFeedbackGenerator()
+        generator.selectionChanged()
+        navigationController?.popViewController(animated: true)
     }
     
     private func setSubviewsLayouts() {
@@ -130,21 +138,18 @@ class TaskEditorViewController: UIViewController {
             descriptionTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
             descriptionTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
             
-            
-            addTaskButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
-            addTaskButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
-            addTaskButton.topAnchor.constraint(equalTo: descriptionTextField.bottomAnchor, constant: 20)
+            saveTaskButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+            saveTaskButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
+            saveTaskButton.topAnchor.constraint(equalTo: descriptionTextField.bottomAnchor, constant: 20)
         ])
-        
     }
-    
 }
 
-struct ViewControllerProvider: PreviewProvider {
-    static var previews: some View {
-        TaskEditorViewController().showPreview()
-    }
-}
+//struct ViewControllerProvider: PreviewProvider {
+//    static var previews: some View {
+//        TaskEditorViewController().showPreview()
+//    }
+//}
 
 
 

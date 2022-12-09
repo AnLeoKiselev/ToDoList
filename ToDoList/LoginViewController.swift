@@ -145,18 +145,21 @@ class LoginViewController: UIViewController {
         accountStackView.addArrangedSubview(createAccountButton)
     }
     
-    
     @objc func createAccountButtonTapped() {
+        //vibration
+        let generator = UISelectionFeedbackGenerator()
+        generator.selectionChanged()
         present(CreateAccountViewController(), animated: true)      //экраны до главного, уничтожатся
    }
     
     @objc private func logInButtonTapped() {
-        
         let viewController = TaskListViewController()
         viewController.title = "Task List"
         let navigationController = UINavigationController(rootViewController: viewController) //главный экран
         navigationController.modalPresentationStyle = .fullScreen
-        
+        //vibration
+        let generator = UISelectionFeedbackGenerator()
+        generator.selectionChanged()
         present(navigationController, animated: true)  //present - показали и убрали
     }
     

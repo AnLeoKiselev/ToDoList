@@ -104,7 +104,6 @@ class CreateAccountViewController: UIViewController {
         return stackview
     } ()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setSubviews()
@@ -145,6 +144,9 @@ class CreateAccountViewController: UIViewController {
     }
     
     @objc func logInButtonTapped() {
+        //vibration
+        let generator = UISelectionFeedbackGenerator()
+        generator.selectionChanged()
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -192,13 +194,6 @@ class CreateAccountViewController: UIViewController {
             
             accountStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             accountStackView.topAnchor.constraint(equalTo: createAccountButton.bottomAnchor, constant: 15)
-            
-            
-//            alreadyhaveAnAccountLabel.topAnchor.constraint(equalTo: createAccountButton.bottomAnchor, constant: 15),
-//            alreadyhaveAnAccountLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 77),
-//
-//            logInButton.topAnchor.constraint(equalTo: createAccountButton.bottomAnchor, constant: 9),
-//            logInButton.leadingAnchor.constraint(equalTo: alreadyhaveAnAccountLabel.trailingAnchor, constant: 5)
         ])
     }
 }

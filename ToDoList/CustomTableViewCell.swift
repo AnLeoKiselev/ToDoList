@@ -40,15 +40,17 @@ class CustomTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        configureContentView()
+    }
+    
+    private func configureContentView() {
         contentView.backgroundColor = #colorLiteral(red: 0.3535276055, green: 0.2688581944, blue: 0.5764445066, alpha: 1)
-        
         contentView.addSubview(myButton)
         contentView.addSubview(mainLabel)
         contentView.addSubview(descriptionLabel)
         contentView.layer.cornerRadius = 10
         contentView.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         contentView.layer.borderWidth = 1
-        
     }
     
     required init?(coder: NSCoder) {

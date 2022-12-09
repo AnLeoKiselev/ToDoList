@@ -99,6 +99,10 @@ class AddNewTaskViewController: UIViewController, UISheetPresentationControllerD
         let newTask = Task(mainname: mainNameTextField.text!, descriptionName: descriptionTextField.text!, status: false)
         LocalStore.shared.taskArray.append(newTask)
         
+        //vibration
+        let generator = UISelectionFeedbackGenerator()
+        generator.selectionChanged()
+        
         self.dismiss(animated: true, completion: nil)
     }
     
