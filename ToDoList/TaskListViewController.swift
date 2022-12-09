@@ -12,11 +12,19 @@ class TaskListViewController: UIViewController {
     
 var segmentedControlPosition = ""
     
+    private lazy var backGroundImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "background2")
+        //imageView.alpha = 0.3
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    } ()
+    
     private lazy var segmentedControl: UISegmentedControl = {
         let items = ["All", "To Do", "Done"]
         let segmentedControl = UISegmentedControl(items: items)
-        segmentedControl.selectedSegmentTintColor = .white
-        segmentedControl.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
+        segmentedControl.selectedSegmentTintColor = #colorLiteral(red: 0.5654026866, green: 0.4771631956, blue: 0.8172003031, alpha: 1)
+        segmentedControl.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
         segmentedControl.addTarget(self, action: #selector(segmentedControlDidChange(_:)), for:.valueChanged)
         segmentedControl.selectedSegmentIndex = 0
@@ -31,6 +39,7 @@ var segmentedControlPosition = ""
         tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.identifier)
         tableView.backgroundColor = .clear //прозрачный цвет
         tableView.layer.cornerRadius = 10
+        //tableView.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         
         return tableView
     }()
@@ -38,12 +47,12 @@ var segmentedControlPosition = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Task List"
-        
+        view.addSubview(backGroundImageView)
         self.navigationController?.navigationBar.prefersLargeTitles = true
-        self.navigationController?.navigationBar.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
+        //self.navigationController?.navigationBar.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
         self.navigationController?.navigationBar.barStyle = UIBarStyle.black
         
-        view.backgroundColor = #colorLiteral(red: 0.1097827628, green: 0.1051032469, blue: 0.1424088478, alpha: 1)
+        //view.backgroundColor = #colorLiteral(red: 0.1097827628, green: 0.1051032469, blue: 0.1424088478, alpha: 1)
         taskListTableView.dataSource = self
         taskListTableView.delegate = self
         addToSubview()
@@ -88,11 +97,16 @@ var segmentedControlPosition = ""
     private func addConstraints() {
         NSLayoutConstraint.activate([
             
+            backGroundImageView.topAnchor.constraint(equalTo: view.topAnchor),
+            backGroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            backGroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            backGroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
             segmentedControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             segmentedControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-            segmentedControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            segmentedControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             
-            taskListTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 80),
+            taskListTableView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 30),
             taskListTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
             taskListTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10),
             taskListTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10)
@@ -126,34 +140,45 @@ extension TaskListViewController: UITableViewDataSource {
         
         if segmentedControlPosition == "All" {
  
+            //let x: Int = ary[0]
+            
+            //LocalStore.shared.taskArray[indexPath.row].status
+            
             cell.configure(mainLabelText: LocalStore.shared.taskArray[indexPath.row].mainname, descriptionLabelText:
-                            LocalStore.shared.taskArray[indexPath.row].descriptionName, imageName: ((LocalStore.shared.taskArray[indexPath.row].status == false) ? "circle" : "checkmark.circle.fill 1"))
+                            LocalStore.shared.taskArray[indexPath.row].descriptionName, imageName: (LocalStore.shared.taskArray[indexPath.row].status == false) ? "square" : "square.fill")
             
         } else if segmentedControlPosition == "ToDo" {
             
             if LocalStore.shared.taskArray[indexPath.row].status == false {
                 cell.configure(mainLabelText: LocalStore.shared.taskArray[indexPath.row].mainname, descriptionLabelText:
-                                LocalStore.shared.taskArray[indexPath.row].descriptionName, imageName: "circle")
+                                LocalStore.shared.taskArray[indexPath.row].descriptionName, imageName: "square")
             }
             
         } else if segmentedControlPosition == "Done"{
             
             if LocalStore.shared.taskArray[indexPath.row].status == true {
                 cell.configure(mainLabelText: LocalStore.shared.taskArray[indexPath.row].mainname, descriptionLabelText:
-                                LocalStore.shared.taskArray[indexPath.row].descriptionName, imageName: "checkmark.circle.fill 1")
+                                LocalStore.shared.taskArray[indexPath.row].descriptionName, imageName: "square.fill")
             }
         }
         
         cell.backgroundColor = .clear
         cell.selectionStyle = .none
         return cell
+        
+//        func some() {
+//            print (LocalStore.shared.taskArray[taskListTableView.indexPath.row].status)
+//        }
+        
     }
     
     func reloadData() {
     taskListTableView.reloadData()
         taskListTableView.backgroundColor = .red
-        print ("!")
+        print ("reload")
 }
+    
+    
     
 }
 

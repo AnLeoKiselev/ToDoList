@@ -10,6 +10,8 @@ import UIKit
 class CustomTableViewCell: UITableViewCell {
     static let identifier = "CustomTableViewCell"
     
+    //private var row: Int
+    
     private let myImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -42,12 +44,13 @@ class CustomTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.backgroundColor = #colorLiteral(red: 0.2274511456, green: 0.2183080614, blue: 0.2804787457, alpha: 1)
+        contentView.backgroundColor = #colorLiteral(red: 0.3535276055, green: 0.2688581944, blue: 0.5764445066, alpha: 1)
         
         contentView.addSubview(myButton)
         contentView.addSubview(mainLabel)
         contentView.addSubview(descriptionLabel)
         contentView.layer.cornerRadius = 10
+
         //contentView.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1) // !!!
         //contentView.layer.borderWidth = 2
     }
@@ -60,6 +63,7 @@ class CustomTableViewCell: UITableViewCell {
         mainLabel.text = mainLabelText
         descriptionLabel.text = descriptionLabelText
         myButton.setBackgroundImage(UIImage(named: imageName), for: UIControl.State.normal)
+        //self.row = row
     }
     
     override func prepareForReuse() {
@@ -69,7 +73,7 @@ class CustomTableViewCell: UITableViewCell {
     }
     
     @objc private func myButtonTapped() {
-        print ("!")
+       // print (row)
     }
     
     override func layoutSubviews() {

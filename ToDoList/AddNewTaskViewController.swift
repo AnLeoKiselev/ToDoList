@@ -13,25 +13,25 @@ class AddNewTaskViewController: UIViewController, UISheetPresentationControllerD
     override var sheetPresentationController: UISheetPresentationController {
         presentationController as! UISheetPresentationController
     }
-    
+    //название поля
     private lazy var mainLabel: UILabel = {
         let label = UILabel()
         label.text = "Task Name"
-        label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        label.textColor = #colorLiteral(red: 0.3535276055, green: 0.2688581944, blue: 0.5764445066, alpha: 1)
         label.font = UIFont(name: "Avenir Next Bold", size: 15)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+    //название поля
     private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.text = "Description"
-        label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        label.textColor = #colorLiteral(red: 0.3535276055, green: 0.2688581944, blue: 0.5764445066, alpha: 1)
         label.font = UIFont(name: "Avenir Next Bold", size: 15)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+    //поле ввода
     private lazy var mainNameTextField: UITextField = {
         let textField = UITextField()
         textField.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
@@ -39,11 +39,13 @@ class AddNewTaskViewController: UIViewController, UISheetPresentationControllerD
         textField.textColor = .black
         textField.font = UIFont(name: "Avenir Next", size: 20)
         textField.layer.cornerRadius = 10
+        textField.layer.borderColor = #colorLiteral(red: 0.459498167, green: 0.385009408, blue: 0.6544987559, alpha: 1)
+        textField.layer.borderWidth = 1
         textField.textAlignment = .left
         
         return textField
     }()
-    
+    //поле ввода
     private lazy var descriptionTextField: UITextView = {
         let textView = UITextView()
         textView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
@@ -51,6 +53,8 @@ class AddNewTaskViewController: UIViewController, UISheetPresentationControllerD
         textView.textColor = .black
         textView.font = UIFont(name: "Avenir Next", size: 20)
         textView.layer.cornerRadius = 10
+        textView.layer.borderColor = #colorLiteral(red: 0.459498167, green: 0.385009408, blue: 0.6544987559, alpha: 1)
+        textView.layer.borderWidth = 1
         textView.textAlignment = .left
         
         return textView
@@ -72,7 +76,7 @@ class AddNewTaskViewController: UIViewController, UISheetPresentationControllerD
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Add New Task"
-        view.backgroundColor = #colorLiteral(red: 0.2274511456, green: 0.2183080614, blue: 0.2804787457, alpha: 1)
+        view.backgroundColor = #colorLiteral(red: 0.7195851214, green: 0.6823450527, blue: 0.9765150138, alpha: 1)
         view.addSubview(mainLabel)
         view.addSubview(mainNameTextField)
         view.addSubview (descriptionLabel)
@@ -99,24 +103,23 @@ class AddNewTaskViewController: UIViewController, UISheetPresentationControllerD
     private func setSubviewsLayouts() {
         NSLayoutConstraint.activate([
             
-            
             mainLabel.heightAnchor.constraint(equalToConstant: 15),
-            mainLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
+            mainLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
             mainLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
             mainLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
             
             mainNameTextField.heightAnchor.constraint(equalToConstant: 50),
-            mainNameTextField.topAnchor.constraint(equalTo: mainLabel.bottomAnchor, constant: 15),
+            mainNameTextField.topAnchor.constraint(equalTo: mainLabel.bottomAnchor, constant: 10),
             mainNameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
             mainNameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
             
             descriptionLabel.heightAnchor.constraint(equalToConstant: 15),
-            descriptionLabel.topAnchor.constraint(equalTo: mainNameTextField.bottomAnchor, constant: 15),
+            descriptionLabel.topAnchor.constraint(equalTo: mainNameTextField.bottomAnchor, constant: 25),
             descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
             descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
             
-            descriptionTextField.heightAnchor.constraint(equalToConstant: 200),
-            descriptionTextField.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 15),
+            descriptionTextField.heightAnchor.constraint(equalToConstant: 250),
+            descriptionTextField.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 10),
             descriptionTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
             descriptionTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
             

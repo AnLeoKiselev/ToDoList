@@ -10,6 +10,13 @@ import SwiftUI
 
 class TaskEditorViewController: UIViewController {
   
+    private lazy var backGroundImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "background2")
+        //imageView.alpha = 0.3
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    } ()
   
     private lazy var mainLabel: UILabel = {
         let label = UILabel()
@@ -31,11 +38,13 @@ class TaskEditorViewController: UIViewController {
     
     private lazy var mainNameTextField: UITextField = {
         let textField = UITextField()
-        textField.backgroundColor = #colorLiteral(red: 0.2274511456, green: 0.2183080614, blue: 0.2804787457, alpha: 1)
+        textField.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.textColor = .white
+        textField.textColor = .black
         textField.font = UIFont(name: "Avenir Next", size: 20)
         textField.layer.cornerRadius = 10
+        textField.layer.borderColor = #colorLiteral(red: 0.459498167, green: 0.385009408, blue: 0.6544987559, alpha: 1)
+        textField.layer.borderWidth = 1
         textField.textAlignment = .left
         
         return textField
@@ -43,11 +52,13 @@ class TaskEditorViewController: UIViewController {
     
     private lazy var descriptionTextField: UITextView = {
         let textView = UITextView()
-        textView.backgroundColor = #colorLiteral(red: 0.2274511456, green: 0.2183080614, blue: 0.2804787457, alpha: 1)
+        textView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.textColor = .white
+        textView.textColor = .black
         textView.font = UIFont(name: "Avenir Next", size: 20)
         textView.layer.cornerRadius = 10
+        textView.layer.borderColor = #colorLiteral(red: 0.459498167, green: 0.385009408, blue: 0.6544987559, alpha: 1)
+        textView.layer.borderWidth = 1
         textView.textAlignment = .left
         
         return textView
@@ -67,13 +78,15 @@ class TaskEditorViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.addSubview(backGroundImageView)
         title = "Edit Task"
-        view.backgroundColor = #colorLiteral(red: 0.1097827628, green: 0.1051032469, blue: 0.1424088478, alpha: 1)
+        //view.backgroundColor = #colorLiteral(red: 0.1097827628, green: 0.1051032469, blue: 0.1424088478, alpha: 1)
         view.addSubview(mainLabel)
         view.addSubview(mainNameTextField)
         view.addSubview (descriptionLabel)
         view.addSubview(descriptionTextField)
         view.addSubview(addTaskButton)
+
         setSubviewsLayouts()
         
     }
@@ -90,24 +103,28 @@ class TaskEditorViewController: UIViewController {
     private func setSubviewsLayouts() {
         NSLayoutConstraint.activate([
             
+            backGroundImageView.topAnchor.constraint(equalTo: view.topAnchor),
+            backGroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            backGroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            backGroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
             mainLabel.heightAnchor.constraint(equalToConstant: 15),
-            mainLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 130),
+            mainLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 150),
             mainLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
             mainLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
             
             mainNameTextField.heightAnchor.constraint(equalToConstant: 50),
-            mainNameTextField.topAnchor.constraint(equalTo: mainLabel.bottomAnchor, constant: 15),
+            mainNameTextField.topAnchor.constraint(equalTo: mainLabel.bottomAnchor, constant: 10),
             mainNameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
             mainNameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
             
             descriptionLabel.heightAnchor.constraint(equalToConstant: 15),
-            descriptionLabel.topAnchor.constraint(equalTo: mainNameTextField.bottomAnchor, constant: 15),
+            descriptionLabel.topAnchor.constraint(equalTo: mainNameTextField.bottomAnchor, constant: 25),
             descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
             descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
             
-            descriptionTextField.heightAnchor.constraint(equalToConstant: 200),
-            descriptionTextField.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 15),
+            descriptionTextField.heightAnchor.constraint(equalToConstant: 250),
+            descriptionTextField.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 10),
             descriptionTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
             descriptionTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
             
@@ -121,11 +138,11 @@ class TaskEditorViewController: UIViewController {
     
 }
     
-//    struct ViewControllerProvider: PreviewProvider {
-//        static var previews: some View {
-//            TaskEditorViewController().showPreview()
-//        }
-//    }
+    struct ViewControllerProvider: PreviewProvider {
+        static var previews: some View {
+            TaskEditorViewController().showPreview()
+        }
+    }
 
     
     
