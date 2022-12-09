@@ -13,6 +13,7 @@ class AddNewTaskViewController: UIViewController, UISheetPresentationControllerD
     override var sheetPresentationController: UISheetPresentationController {
         presentationController as! UISheetPresentationController
     }
+    
     //название поля
     private lazy var mainLabel: UILabel = {
         let label = UILabel()
@@ -22,6 +23,7 @@ class AddNewTaskViewController: UIViewController, UISheetPresentationControllerD
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    
     //название поля
     private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
@@ -31,6 +33,7 @@ class AddNewTaskViewController: UIViewController, UISheetPresentationControllerD
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    
     //поле ввода
     private lazy var mainNameTextField: UITextField = {
         let textField = UITextField()
@@ -45,6 +48,7 @@ class AddNewTaskViewController: UIViewController, UISheetPresentationControllerD
         
         return textField
     }()
+    
     //поле ввода
     private lazy var descriptionTextField: UITextView = {
         let textView = UITextView()
@@ -72,7 +76,6 @@ class AddNewTaskViewController: UIViewController, UISheetPresentationControllerD
         return button
     }()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Add New Task"
@@ -85,6 +88,7 @@ class AddNewTaskViewController: UIViewController, UISheetPresentationControllerD
         setSubviewsLayouts()
         
         sheetPresentationController.delegate = self
+        
         sheetPresentationController.preferredCornerRadius = 20
         sheetPresentationController.prefersGrabberVisible = true
         sheetPresentationController.detents = [.medium()]
@@ -94,9 +98,7 @@ class AddNewTaskViewController: UIViewController, UISheetPresentationControllerD
     @objc func addNewTaskButtonTapped() {
         let newTask = Task(mainname: mainNameTextField.text!, descriptionName: descriptionTextField.text!, status: false)
         LocalStore.shared.taskArray.append(newTask)
-        TaskListViewController().reloadData()
         
-        //navigationController?.popViewController(animated: true)
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -128,10 +130,9 @@ class AddNewTaskViewController: UIViewController, UISheetPresentationControllerD
             addTaskButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
             addTaskButton.topAnchor.constraint(equalTo: descriptionTextField.bottomAnchor, constant: 20)
         ])
-        
     }
 }
-    
+
 //    struct ViewControllerProvider: PreviewProvider {
 //        static var previews: some View {
 //            AddNewTaskViewController().showPreview()

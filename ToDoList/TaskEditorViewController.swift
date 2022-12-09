@@ -9,7 +9,7 @@ import UIKit
 import SwiftUI
 
 class TaskEditorViewController: UIViewController {
-  
+    
     private lazy var backGroundImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "background2")
@@ -17,7 +17,7 @@ class TaskEditorViewController: UIViewController {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     } ()
-  
+    
     private lazy var mainLabel: UILabel = {
         let label = UILabel()
         label.text = "Task Name"
@@ -83,10 +83,12 @@ class TaskEditorViewController: UIViewController {
         //view.backgroundColor = #colorLiteral(red: 0.1097827628, green: 0.1051032469, blue: 0.1424088478, alpha: 1)
         view.addSubview(mainLabel)
         view.addSubview(mainNameTextField)
-        view.addSubview (descriptionLabel)
+        view.addSubview(descriptionLabel)
         view.addSubview(descriptionTextField)
         view.addSubview(addTaskButton)
-
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Task is Done", style: .done, target: self, action: #selector(editTaskButtonTapped))
+        
         setSubviewsLayouts()
         
     }
@@ -137,16 +139,16 @@ class TaskEditorViewController: UIViewController {
     }
     
 }
-    
-    struct ViewControllerProvider: PreviewProvider {
-        static var previews: some View {
-            TaskEditorViewController().showPreview()
-        }
+
+struct ViewControllerProvider: PreviewProvider {
+    static var previews: some View {
+        TaskEditorViewController().showPreview()
     }
+}
 
-    
-    
 
-    
-    
+
+
+
+
 

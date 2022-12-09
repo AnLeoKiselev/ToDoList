@@ -10,12 +10,11 @@ import SwiftUI
 
 class TaskListViewController: UIViewController {
     
-var segmentedControlPosition = ""
+    var segmentedControlPosition = ""
     
     private lazy var backGroundImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "background2")
-        //imageView.alpha = 0.3
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     } ()
@@ -31,7 +30,6 @@ var segmentedControlPosition = ""
         return segmentedControl
     }()
     
-    
     private lazy var taskListTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -39,32 +37,44 @@ var segmentedControlPosition = ""
         tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.identifier)
         tableView.backgroundColor = .clear //прозрачный цвет
         tableView.layer.cornerRadius = 10
-        //tableView.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        
+        tableView.dataSource = self
+        tableView.delegate = self
         return tableView
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Task List"
-        view.addSubview(backGroundImageView)
-        self.navigationController?.navigationBar.prefersLargeTitles = true
-        //self.navigationController?.navigationBar.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
-        self.navigationController?.navigationBar.barStyle = UIBarStyle.black
-        
-        //view.backgroundColor = #colorLiteral(red: 0.1097827628, green: 0.1051032469, blue: 0.1424088478, alpha: 1)
-        taskListTableView.dataSource = self
-        taskListTableView.delegate = self
         addToSubview()
         addConstraints()
         configureItems()
+    }
+    
+    private func configureItems() {
+        
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        self.navigationController?.navigationBar.barStyle = UIBarStyle.black
+        
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont(name: "Avenir Next Bold", size: 20.0)!]
+        
+        navigationController?.navigationBar.tintColor = .white
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .add, target: self, action: #selector(openTaskViewController))
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logOutButtonTapped))
+    }
+    
+    private func addToSubview() {
+        view.addSubview(backGroundImageView)
+        view.addSubview(taskListTableView)
+        view.addSubview(segmentedControl)
     }
     
     @objc func segmentedControlDidChange(_ segmentedControl: UISegmentedControl) {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
             segmentedControlPosition = "All"
-            
             taskListTableView.reloadData()
         case 1:
             segmentedControlPosition = "ToDo"
@@ -77,21 +87,10 @@ var segmentedControlPosition = ""
         }
     }
     
-    private func configureItems() {
-        
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont(name: "Avenir Next Bold", size: 20.0)!]
-        
-        navigationController?.navigationBar.tintColor = .white
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-            barButtonSystemItem: .add, target: self, action: #selector(openTaskViewController))
-        
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(logOutButtonTapped))
-    }
-
-    private func addToSubview() {
-        view.addSubview(taskListTableView)
-        view.addSubview(segmentedControl)
+    func reloadData() {
+        taskListTableView.reloadData()
+        taskListTableView.backgroundColor = .red
+        print ("reloaded")
     }
     
     private func addConstraints() {
@@ -112,18 +111,6 @@ var segmentedControlPosition = ""
             taskListTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10)
         ])
     }
-    
-       
-//        if self.viewIfLoaded?.window != nil {
-//            print ("виден")
-//        }
-//
-//        taskListTableView.backgroundColor = .red
-//        //taskListTableView.reloadData()
-//        print ("привкте")
-//        //taskListTableView.backgroundColor = .systemMint
-//    }
-    
 }
 
 extension TaskListViewController: UITableViewDataSource {
@@ -139,10 +126,6 @@ extension TaskListViewController: UITableViewDataSource {
         }
         
         if segmentedControlPosition == "All" {
- 
-            //let x: Int = ary[0]
-            
-            //LocalStore.shared.taskArray[indexPath.row].status
             
             cell.configure(mainLabelText: LocalStore.shared.taskArray[indexPath.row].mainname, descriptionLabelText:
                             LocalStore.shared.taskArray[indexPath.row].descriptionName, imageName: (LocalStore.shared.taskArray[indexPath.row].status == false) ? "square" : "square.fill")
@@ -166,28 +149,12 @@ extension TaskListViewController: UITableViewDataSource {
         cell.selectionStyle = .none
         return cell
         
-//        func some() {
-//            print (LocalStore.shared.taskArray[taskListTableView.indexPath.row].status)
-//        }
-        
     }
-    
-    func reloadData() {
-    taskListTableView.reloadData()
-        taskListTableView.backgroundColor = .red
-        print ("reload")
 }
-    
-    
-    
-}
-
-
 
 extension TaskListViewController: UITableViewDelegate {
     
-//Нажатие ряда таблицы
-    
+    //Нажатие ряда таблицы
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let addTaskEditorViewController = TaskEditorViewController()  //нажат ряд
         navigationController?.pushViewController(addTaskEditorViewController, animated: true)
@@ -198,26 +165,14 @@ extension TaskListViewController: UITableViewDelegate {
     }
     
     @objc func openTaskViewController() {
-        //let openNewTaskViewController = AddNewTaskViewController()
-       // navigationController?.pushViewController(openNewTaskViewController, animated: true)
         let openNewTaskViewController = AddNewTaskViewController()
-//        navigationController?.modalPresentationStyle = .pageSheet
-//
         present(openNewTaskViewController, animated: true)  //present - показали и убрали
     }
-    
-//    openTaskViewController() {
-//        let openNewTaskViewController = AddNewTaskViewController()
-//        navigationController?.pushViewController(openNewTaskViewController, animated: true)
-//    }
-    
-    
     
     @objc func logOutButtonTapped() {
         
         let loginViewController = LoginViewController()
-        //navigationController?.pushViewController(loginViewController, animated: true)
         self.dismiss(animated: true, completion: nil)
     }
 }
-    
+

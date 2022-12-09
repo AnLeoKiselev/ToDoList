@@ -10,13 +10,10 @@ import UIKit
 class CustomTableViewCell: UITableViewCell {
     static let identifier = "CustomTableViewCell"
     
-    //private var row: Int
-    
     private let myImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-            //imageView.layer.cornerRadius = 10
         return imageView
     }()
     
@@ -26,7 +23,6 @@ class CustomTableViewCell: UITableViewCell {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
     
     private let mainLabel: UILabel = {
         let label = UILabel()
@@ -50,9 +46,9 @@ class CustomTableViewCell: UITableViewCell {
         contentView.addSubview(mainLabel)
         contentView.addSubview(descriptionLabel)
         contentView.layer.cornerRadius = 10
-
-        //contentView.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1) // !!!
-        //contentView.layer.borderWidth = 2
+        contentView.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        contentView.layer.borderWidth = 1
+        
     }
     
     required init?(coder: NSCoder) {
@@ -63,7 +59,6 @@ class CustomTableViewCell: UITableViewCell {
         mainLabel.text = mainLabelText
         descriptionLabel.text = descriptionLabelText
         myButton.setBackgroundImage(UIImage(named: imageName), for: UIControl.State.normal)
-        //self.row = row
     }
     
     override func prepareForReuse() {
@@ -73,7 +68,6 @@ class CustomTableViewCell: UITableViewCell {
     }
     
     @objc private func myButtonTapped() {
-       // print (row)
     }
     
     override func layoutSubviews() {
@@ -96,9 +90,9 @@ class CustomTableViewCell: UITableViewCell {
                                         height: 25)
         
         myButton.frame = CGRect(x: 22,
-                                   y: (contentView.frame.size.height-imageSize)/2,
-                                   width: imageSize,
-                                   height: imageSize)
+                                y: (contentView.frame.size.height-imageSize)/2,
+                                width: imageSize,
+                                height: imageSize)
     }
 }
 
