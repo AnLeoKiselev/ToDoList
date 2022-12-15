@@ -76,12 +76,19 @@ class TaskEditorViewController: UIViewController {
         return button
     }()
     
+    var taskNameTaskEditorVC = "" //из VC 1 данные будут передавться сюда
+    var descNameTaskEditorVC = ""
+    var delegate: TaskListViewController? //опционал делегата
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Edit Task"
         addToSubview()
         configureItems()
         setSubviewsLayouts()
+        
+        mainNameTextField.text = taskNameTaskEditorVC
+        descriptionTextField.text = descNameTaskEditorVC
     }
     
     private func configureItems(){

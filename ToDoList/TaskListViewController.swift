@@ -6,17 +6,18 @@
 // https://www.youtube.com/watch?v=Pu7B7uEzP18
 
 import UIKit
-import SwiftUI
+//import SwiftUI
 
-class TaskListViewController: UIViewController {
+protocol EditTaskVCDelegate {
+    func update (taskName: String, descriptionName: String)
+}
+
+class TaskListViewController: UIViewController, EditTaskVCDelegate {
     
     var segmentedControlPosition = "All"
-    
     var indexRow = 0
-    
-//    var text = "" //из VC 1 данные будут передавться сюда
-//    var text2 = ""
-//    var delegate: CustomTableViewCell? //опционал делегата
+    var taskNameTaskListVC = ""
+    var descNameTaskListVC = ""
     
     private lazy var backGroundImageView: UIImageView = {
         let imageView = UIImageView()
@@ -54,9 +55,6 @@ class TaskListViewController: UIViewController {
         addToSubview()
         addConstraints()
         configureItems()
-        
-//        print (text)
-//        print (text2)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -139,6 +137,7 @@ class TaskListViewController: UIViewController {
             taskListTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10)
         ])
     }
+    
 }
 
 extension TaskListViewController: UITableViewDataSource {
@@ -192,15 +191,22 @@ extension TaskListViewController: UITableViewDelegate {
     //Нажатие ряда таблицы
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        
-        
         //vibration
         let generator = UISelectionFeedbackGenerator()
         generator.selectionChanged()
         
-        let addTaskEditorViewController = TaskEditorViewController()  //нажат ряд
-        navigationController?.pushViewController(addTaskEditorViewController, animated: true)
-    }
+        //push TaskEditorViewController()
+        let TaskEditorViewController = TaskEditorViewController()
+        navigationController?.pushViewController(TaskEditorViewController, animated: true)
+        
+       //делегат в TaskEditorViewController
+        taskNameTaskListVC = LocalStore.shared.taskArray[indexPath.row].mainname
+        descNameTaskListVC = LocalStore.shared.taskArray[indexPath.row].descriptionName
+        TaskEditorViewController.taskNameTaskEditorVC = taskNameTaskListVC
+        TaskEditorViewController.descNameTaskEditorVC = descNameTaskListVC
+            TaskEditorViewController.delegate = self
+        }
+    
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100 //высота ячейки
@@ -222,7 +228,15 @@ extension TaskListViewController: UITableViewDelegate {
         generator.selectionChanged()
         self.dismiss(animated: true, completion: nil)
     }
+    
+    func update(taskName: String, descriptionName: String) {
+        taskNameTaskListVC = taskName
+        descNameTaskListVC = descriptionName
+    }
+    
 }
+
+
 
 //extension TaskListViewController: RefreshData {
 //    func refreshData() {
