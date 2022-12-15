@@ -7,11 +7,16 @@
 
 import UIKit
 import SwiftUI
-import AudioToolbox
 
 class TaskListViewController: UIViewController {
     
-    var segmentedControlPosition = ""
+    var segmentedControlPosition = "All"
+    
+    var indexRow = 0
+    
+//    var text = "" //из VC 1 данные будут передавться сюда
+//    var text2 = ""
+//    var delegate: CustomTableViewCell? //опционал делегата
     
     private lazy var backGroundImageView: UIImageView = {
         let imageView = UIImageView()
@@ -31,7 +36,7 @@ class TaskListViewController: UIViewController {
         return segmentedControl
     }()
     
-    private lazy var taskListTableView: UITableView = {
+    private(set) lazy var taskListTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorColor = .clear
@@ -49,6 +54,22 @@ class TaskListViewController: UIViewController {
         addToSubview()
         addConstraints()
         configureItems()
+        
+//        print (text)
+//        print (text2)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        taskListTableView.reloadData() //обновление таблицы при возвращении с AddNewTask...
+    }
+    
+    public func reloadData() {
+        taskListTableView.reloadData()
+    }
+    
+    public func cookOrder(order: String) {
+        print (order)
     }
     
     private func configureItems() {
@@ -80,27 +101,24 @@ class TaskListViewController: UIViewController {
             //vibration
             let generator = UISelectionFeedbackGenerator()
             generator.selectionChanged()
+            //print (segmentedControl.selectedSegmentIndex)
         case 1:
             segmentedControlPosition = "ToDo"
             taskListTableView.reloadData()
             //vibration
             let generator = UISelectionFeedbackGenerator()
             generator.selectionChanged()
+            //print (segmentedControl.selectedSegmentIndex)
         case 2:
             segmentedControlPosition = "Done"
             taskListTableView.reloadData()
             //vibration
             let generator = UISelectionFeedbackGenerator()
             generator.selectionChanged()
+            //print (segmentedControl.selectedSegmentIndex)
         default:
             segmentedControlPosition = "All"
         }
-    }
-    
-    func reloadData() {
-        taskListTableView.reloadData()
-        taskListTableView.backgroundColor = .red
-        print ("reloaded")
     }
     
     private func addConstraints() {
@@ -126,7 +144,15 @@ class TaskListViewController: UIViewController {
 extension TaskListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        LocalStore.shared.taskArray.count
+        if segmentedControlPosition == "ToDo" {
+            let toDoArray = LocalStore.shared.taskArray.filter({$0.status == false})
+                        return toDoArray.count
+        } else if segmentedControlPosition == "Done" {
+            let toDoArray = LocalStore.shared.taskArray.filter({$0.status == true})
+                        return toDoArray.count
+        } else {
+            return LocalStore.shared.taskArray.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -135,37 +161,39 @@ extension TaskListViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        if segmentedControlPosition == "All" {
+        if segmentedControlPosition == "ToDo" {
+            let toDoArray = LocalStore.shared.taskArray.filter({$0.status == false})
+                        
+                        cell.configure(mainLabelText: toDoArray[indexPath.row].mainname, descriptionLabelText:
+                                        toDoArray[indexPath.row].descriptionName, imageName: "square", tag: indexPath.row)
             
+        } else if segmentedControlPosition == "Done" {
+            
+            let toDoArray = LocalStore.shared.taskArray.filter({$0.status == true})
+                        
+                        cell.configure(mainLabelText: toDoArray[indexPath.row].mainname, descriptionLabelText:
+                                        toDoArray[indexPath.row].descriptionName, imageName: "square.fill", tag: indexPath.row)
+            
+            
+        } else {
             cell.configure(mainLabelText: LocalStore.shared.taskArray[indexPath.row].mainname, descriptionLabelText:
-                            LocalStore.shared.taskArray[indexPath.row].descriptionName, imageName: (LocalStore.shared.taskArray[indexPath.row].status == false) ? "square" : "square.fill")
-            
-        } else if segmentedControlPosition == "ToDo" {
-            
-            if LocalStore.shared.taskArray[indexPath.row].status == false {
-                cell.configure(mainLabelText: LocalStore.shared.taskArray[indexPath.row].mainname, descriptionLabelText:
-                                LocalStore.shared.taskArray[indexPath.row].descriptionName, imageName: "square")
-            }
-            
-        } else if segmentedControlPosition == "Done"{
-            
-            if LocalStore.shared.taskArray[indexPath.row].status == true {
-                cell.configure(mainLabelText: LocalStore.shared.taskArray[indexPath.row].mainname, descriptionLabelText:
-                                LocalStore.shared.taskArray[indexPath.row].descriptionName, imageName: "square.fill")
-            }
+                            LocalStore.shared.taskArray[indexPath.row].descriptionName, imageName: (LocalStore.shared.taskArray[indexPath.row].status == false) ? "square" : "square.fill", tag: indexPath.row)
         }
         
         cell.backgroundColor = .clear
         cell.selectionStyle = .none
         return cell
-        
     }
 }
+
 
 extension TaskListViewController: UITableViewDelegate {
     
     //Нажатие ряда таблицы
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        
+        
         //vibration
         let generator = UISelectionFeedbackGenerator()
         generator.selectionChanged()
@@ -183,7 +211,8 @@ extension TaskListViewController: UITableViewDelegate {
         //vibration
         let generator = UISelectionFeedbackGenerator()
         generator.selectionChanged()
-        present(openNewTaskViewController, animated: true)  //present - показали и убрали
+        navigationController?.pushViewController(openNewTaskViewController, animated: true )
+        //present(openNewTaskViewController, animated: true)  //present - показали и убрали
     }
     
     @objc func logOutButtonTapped() {
@@ -194,4 +223,10 @@ extension TaskListViewController: UITableViewDelegate {
         self.dismiss(animated: true, completion: nil)
     }
 }
+
+//extension TaskListViewController: RefreshData {
+//    func refreshData() {
+//        self.reloadData()
+//    }
+//}
 

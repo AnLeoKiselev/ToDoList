@@ -29,3 +29,4 @@ class LocalStore {
 }
 
 //LocalStore.shared.taskArray.append(newTask)
+

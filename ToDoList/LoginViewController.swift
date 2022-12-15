@@ -111,7 +111,7 @@ class LoginViewController: UIViewController {
         addSubviewsToView()
         setSubviewsLayouts()
         addToStackView()
-        
+    
         self.hideKeyboardWhenTappedAround() //клава убирается после тапа везде
     }
 
@@ -157,9 +157,11 @@ class LoginViewController: UIViewController {
         viewController.title = "Task List"
         let navigationController = UINavigationController(rootViewController: viewController) //главный экран
         navigationController.modalPresentationStyle = .fullScreen
+        
         //vibration
         let generator = UISelectionFeedbackGenerator()
         generator.selectionChanged()
+        
         present(navigationController, animated: true)  //present - показали и убрали
     }
     

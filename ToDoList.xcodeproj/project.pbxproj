@@ -18,6 +18,7 @@
 		1C6750162934E67400C0F083 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6750152934E67400C0F083 /* CustomTableViewCell.swift */; };
 		1C675038293519BD00C0F083 /* LocalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C675037293519BC00C0F083 /* LocalStore.swift */; };
 		1C67503A29375F2800C0F083 /* LiveViewExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C67503929375F2700C0F083 /* LiveViewExtention.swift */; };
+		1C686E342944707E006ECD9C /* Delegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C686E332944707D006ECD9C /* Delegates.swift */; };
 		1CDA8E1D2927F8E50021E5F6 /* TaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDA8E1C2927F8E50021E5F6 /* TaskListViewController.swift */; };
 		1CDA8E1F292A174E0021E5F6 /* AddNewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDA8E1E292A174E0021E5F6 /* AddNewTaskViewController.swift */; };
 		1CDA8E21292A17990021E5F6 /* TaskEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDA8E20292A17990021E5F6 /* TaskEditorViewController.swift */; };
@@ -37,6 +38,7 @@
 		1C6750152934E67400C0F083 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		1C675037293519BC00C0F083 /* LocalStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStore.swift; sourceTree = "<group>"; };
 		1C67503929375F2700C0F083 /* LiveViewExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveViewExtention.swift; sourceTree = "<group>"; };
+		1C686E332944707D006ECD9C /* Delegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delegates.swift; sourceTree = "<group>"; };
 		1CDA8E1C2927F8E50021E5F6 /* TaskListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListViewController.swift; sourceTree = "<group>"; };
 		1CDA8E1E292A174E0021E5F6 /* AddNewTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewTaskViewController.swift; sourceTree = "<group>"; };
 		1CDA8E20292A17990021E5F6 /* TaskEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskEditorViewController.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 				1C324EFC291E91160032F899 /* Info.plist */,
 				1C675037293519BC00C0F083 /* LocalStore.swift */,
 				1C67503929375F2700C0F083 /* LiveViewExtention.swift */,
+				1C686E332944707D006ECD9C /* Delegates.swift */,
 			);
 			path = ToDoList;
 			sourceTree = "<group>";
@@ -171,6 +174,7 @@
 				1C675038293519BD00C0F083 /* LocalStore.swift in Sources */,
 				1C6750162934E67400C0F083 /* CustomTableViewCell.swift in Sources */,
 				1C324EEF291E91140032F899 /* AppDelegate.swift in Sources */,
+				1C686E342944707E006ECD9C /* Delegates.swift in Sources */,
 				1CDA8E1F292A174E0021E5F6 /* AddNewTaskViewController.swift in Sources */,
 				1C324EF1291E91140032F899 /* SceneDelegate.swift in Sources */,
 			);

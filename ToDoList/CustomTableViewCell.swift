@@ -7,6 +7,10 @@
 
 import UIKit
 
+//protocol FirstViewControllerDelegate {
+//    func update (text: String, text2: String)
+//}
+
 class CustomTableViewCell: UITableViewCell {
     static let identifier = "CustomTableViewCell"
     
@@ -57,9 +61,10 @@ class CustomTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func configure(mainLabelText: String, descriptionLabelText: String, imageName: String) {
+    public func configure(mainLabelText: String, descriptionLabelText: String, imageName: String, tag: Int) {
         mainLabel.text = mainLabelText
         descriptionLabel.text = descriptionLabelText
+        myButton.tag = tag
         myButton.setBackgroundImage(UIImage(named: imageName), for: UIControl.State.normal)
     }
     
@@ -69,32 +74,50 @@ class CustomTableViewCell: UITableViewCell {
         myImageView.image = nil
     }
     
-    @objc private func myButtonTapped() {
+    @objc private func myButtonTapped(_ sender: UIButton) {
+        LocalStore.shared.taskArray[sender.tag].status.toggle()
+        print(sender.tag)
+        
+//        let vc = TaskListViewController() //передаем из 1 в 2
+//        
+//        if let text = mainLabel.text, let text2 = descriptionLabel.text {
+//            vc.text = text
+//            vc.text2 = text2
+//            vc.delegate = self
+            
+            
+        }
+        
+    override func layoutSubviews() {
+            super.layoutSubviews()
+            
+            let margins = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
+            contentView.frame = contentView.frame.inset(by: margins) //пробелы между ячейками
+            
+            let imageSize = contentView.frame.size.height/2.5
+            let width = contentView.frame.size.width - myImageView.frame.size.width - 40 * 3
+            
+            mainLabel.frame = CGRect(x: imageSize + 40,
+                                     y: 17,
+                                     width: width,
+                                     height: 25)
+            
+            descriptionLabel.frame = CGRect(x: imageSize + 40,
+                                            y: mainLabel.frame.size.height + 20,
+                                            width: 1000,
+                                            height: 25)
+            
+            myButton.frame = CGRect(x: 22,
+                                    y: (contentView.frame.size.height-imageSize)/2,
+                                    width: imageSize,
+                                    height: imageSize)
+        }
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        let margins = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
-        contentView.frame = contentView.frame.inset(by: margins) //пробелы между ячейками
-        
-        let imageSize = contentView.frame.size.height/2.5
-        let width = contentView.frame.size.width - myImageView.frame.size.width - 40 * 3
-        
-        mainLabel.frame = CGRect(x: imageSize + 40,
-                                 y: 17,
-                                 width: width,
-                                 height: 25)
-        
-        descriptionLabel.frame = CGRect(x: imageSize + 40,
-                                        y: mainLabel.frame.size.height + 20,
-                                        width: 1000,
-                                        height: 25)
-        
-        myButton.frame = CGRect(x: 22,
-                                y: (contentView.frame.size.height-imageSize)/2,
-                                width: imageSize,
-                                height: imageSize)
-    }
-}
+    
+    
+//    func update(text: String, text2: String) {
+//        mainLabel.text = text
+//        descriptionLabel.text = text2
+//    }
 

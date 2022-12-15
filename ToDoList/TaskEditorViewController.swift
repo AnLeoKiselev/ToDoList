@@ -39,6 +39,7 @@ class TaskEditorViewController: UIViewController {
         let textField = UITextField()
         textField.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         textField.translatesAutoresizingMaskIntoConstraints = false
+        
         textField.textColor = .black
         textField.font = UIFont(name: "Avenir Next", size: 20)
         textField.layer.cornerRadius = 10
@@ -144,6 +145,7 @@ class TaskEditorViewController: UIViewController {
         ])
     }
 }
+
 
 //struct ViewControllerProvider: PreviewProvider {
 //    static var previews: some View {

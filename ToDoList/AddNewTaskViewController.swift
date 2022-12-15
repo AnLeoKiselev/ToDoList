@@ -8,11 +8,13 @@
 import UIKit
 import SwiftUI //https://www.youtube.com/watch?v=KZTtktlBOeM
 
-class AddNewTaskViewController: UIViewController, UISheetPresentationControllerDelegate {
+class AddNewTaskViewController: UIViewController {
     
-    override var sheetPresentationController: UISheetPresentationController {
-        presentationController as! UISheetPresentationController
-    }
+
+    
+//    override var sheetPresentationController: UISheetPresentationController {
+//        presentationController as! UISheetPresentationController
+//    }
     
     //название поля
     private lazy var mainLabel: UILabel = {
@@ -87,13 +89,13 @@ class AddNewTaskViewController: UIViewController, UISheetPresentationControllerD
         view.addSubview(addTaskButton)
         setSubviewsLayouts()
         
-        sheetPresentationController.delegate = self
-        
-        sheetPresentationController.preferredCornerRadius = 20
-        sheetPresentationController.prefersGrabberVisible = true
-        sheetPresentationController.detents = [.medium()]
-        
-    }
+//        sheetPresentationController.delegate = self
+//
+//        sheetPresentationController.preferredCornerRadius = 20
+//        sheetPresentationController.prefersGrabberVisible = true
+//        sheetPresentationController.detents = [.medium()]
+//
+   }
     
     @objc func addNewTaskButtonTapped() {
         let newTask = Task(mainname: mainNameTextField.text!, descriptionName: descriptionTextField.text!, status: false)
@@ -103,14 +105,15 @@ class AddNewTaskViewController: UIViewController, UISheetPresentationControllerD
         let generator = UISelectionFeedbackGenerator()
         generator.selectionChanged()
         
-        self.dismiss(animated: true, completion: nil)
+        navigationController?.popViewController(animated: true)
+        
     }
     
     private func setSubviewsLayouts() {
         NSLayoutConstraint.activate([
             
             mainLabel.heightAnchor.constraint(equalToConstant: 15),
-            mainLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
+            mainLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 150),
             mainLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
             mainLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
             
