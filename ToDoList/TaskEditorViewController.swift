@@ -90,6 +90,7 @@ class TaskEditorViewController: UIViewController {
         
         mainNameTextField.text = taskNameTaskEditorVC
         descriptionTextField.text = descNameTaskEditorVC
+        print (indexRowTaskEditorVC)
         //descriptionTextField.text = indexRowTaskEditorVC
     }
     
@@ -107,9 +108,17 @@ class TaskEditorViewController: UIViewController {
     }
     
     @objc func saveTaskButtonTapped() {
+        
+        LocalStore.shared.taskArray[indexRowTaskEditorVC].mainname = mainNameTextField.text!
+        
+        LocalStore.shared.taskArray[indexRowTaskEditorVC].descriptionName = descriptionTextField.text!
+        
+        delegate?.reloadTaskListTableViewVC()
+        
         //vibration
         let generator = UISelectionFeedbackGenerator()
         generator.selectionChanged()
+        
         navigationController?.popViewController(animated: true)
     }
     

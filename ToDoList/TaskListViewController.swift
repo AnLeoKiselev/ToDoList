@@ -9,7 +9,7 @@ import UIKit
 //import SwiftUI
 
 protocol EditTaskVCDelegate {
-    func update (taskName: String, descriptionName: String)
+    func update(taskName: String, descriptionName: String, indexRow: Int)
 }
 
 protocol AddNewTaskVCDelegate {
@@ -24,7 +24,7 @@ class TaskListViewController: UIViewController, EditTaskVCDelegate, AddNewTaskVC
     }
     
     var segmentedControlPosition = "All"
-    var indexRow = 0
+    var indexRowTaskListVC = 0
     var taskNameTaskListVC = ""
     var descNameTaskListVC = ""
     
@@ -147,6 +147,8 @@ extension TaskListViewController: UITableViewDataSource {
         }
     }
     
+    
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath) as? CustomTableViewCell
         else {
@@ -172,16 +174,23 @@ extension TaskListViewController: UITableViewDataSource {
                             LocalStore.shared.taskArray[indexPath.row].descriptionName, imageName: (LocalStore.shared.taskArray[indexPath.row].status == false) ? "square" : "square.fill", tag: indexPath.row)
         }
         
+        
+        
         cell.backgroundColor = .clear
         cell.selectionStyle = .none
         return cell
+        
+        
     }
+    
+  
+    
 }
 
 
 extension TaskListViewController: UITableViewDelegate {
     
-    //Нажатие ряда таблицы
+//Нажатие ряда таблицы
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         //vibration
@@ -190,14 +199,19 @@ extension TaskListViewController: UITableViewDelegate {
         
         //push TaskEditorViewController()
         let TaskEditorViewController = TaskEditorViewController()
-        navigationController?.pushViewController(TaskEditorViewController, animated: true)
         
         //делегат в TaskEditorViewController
         taskNameTaskListVC = LocalStore.shared.taskArray[indexPath.row].mainname
         descNameTaskListVC = LocalStore.shared.taskArray[indexPath.row].descriptionName
+        indexRowTaskListVC = indexPath.row
+        
         TaskEditorViewController.taskNameTaskEditorVC = taskNameTaskListVC
         TaskEditorViewController.descNameTaskEditorVC = descNameTaskListVC
+        TaskEditorViewController.indexRowTaskEditorVC = indexRowTaskListVC
+        
         TaskEditorViewController.delegate = self
+        
+        navigationController?.pushViewController(TaskEditorViewController, animated: true)
     }
     
     
@@ -223,9 +237,9 @@ extension TaskListViewController: UITableViewDelegate {
         self.dismiss(animated: true, completion: nil)
     }
     
-    func update(taskName: String, descriptionName: String) {
-        taskNameTaskListVC = taskName
-        descNameTaskListVC = descriptionName
+    func update(taskName: String, descriptionName: String, indexRow: Int) {
+        //taskNameTaskListVC = taskName
+        //descNameTaskListVC = descriptionName
+        //indexRowTaskListVC = indexRow
     }
-    
 }
