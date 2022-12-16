@@ -14,6 +14,13 @@ class AddNewTaskViewController: UIViewController, UISheetPresentationControllerD
         presentationController as! UISheetPresentationController
     }
     
+    private lazy var backGroundImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "background2")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    } ()
+    
     //название поля
     private lazy var mainLabel: UILabel = {
         let label = UILabel()
@@ -81,7 +88,8 @@ class AddNewTaskViewController: UIViewController, UISheetPresentationControllerD
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Add New Task"
-        view.backgroundColor = #colorLiteral(red: 0.7195851214, green: 0.6823450527, blue: 0.9765150138, alpha: 1)
+        //view.backgroundColor = #colorLiteral(red: 0.7195851214, green: 0.6823450527, blue: 0.9765150138, alpha: 1)
+        view.addSubview(backGroundImageView)
         view.addSubview(mainLabel)
         view.addSubview(mainNameTextField)
         view.addSubview (descriptionLabel)
@@ -113,6 +121,11 @@ class AddNewTaskViewController: UIViewController, UISheetPresentationControllerD
     
     private func setSubviewsLayouts() {
         NSLayoutConstraint.activate([
+            
+            backGroundImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            backGroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            backGroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+            backGroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 20),
             
             mainLabel.heightAnchor.constraint(equalToConstant: 15),
             mainLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
