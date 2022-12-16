@@ -12,15 +12,16 @@ protocol EditTaskVCDelegate {
     func update(taskName: String, descriptionName: String, indexRow: Int)
 }
 
-protocol AddNewTaskVCDelegate {
+protocol ReloadTaskListTableVCDelegate {
     func reloadTaskListTableViewVC ()
 }
 
-class TaskListViewController: UIViewController, EditTaskVCDelegate, AddNewTaskVCDelegate {
+class TaskListViewController: UIViewController, EditTaskVCDelegate, ReloadTaskListTableVCDelegate {
     
     func reloadTaskListTableViewVC() {
         taskListTableView.reloadData()
-        //taskListTableView.backgroundColor = .red
+        taskListTableView.backgroundColor = .red
+        print ("Works")
     }
     
     var segmentedControlPosition = "All"
@@ -146,9 +147,7 @@ extension TaskListViewController: UITableViewDataSource {
             return LocalStore.shared.taskArray.count
         }
     }
-    
-    
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath) as? CustomTableViewCell
         else {
@@ -174,19 +173,13 @@ extension TaskListViewController: UITableViewDataSource {
                             LocalStore.shared.taskArray[indexPath.row].descriptionName, imageName: (LocalStore.shared.taskArray[indexPath.row].status == false) ? "square" : "square.fill", tag: indexPath.row)
         }
         
-        
-        
         cell.backgroundColor = .clear
         cell.selectionStyle = .none
         return cell
         
-        
     }
-    
-  
-    
-}
 
+}
 
 extension TaskListViewController: UITableViewDelegate {
     
@@ -214,7 +207,6 @@ extension TaskListViewController: UITableViewDelegate {
         navigationController?.pushViewController(TaskEditorViewController, animated: true)
     }
     
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100 //высота ячейки
     }
@@ -222,6 +214,7 @@ extension TaskListViewController: UITableViewDelegate {
     @objc func openNewTaskViewController() {
         let openNewTaskViewController = AddNewTaskViewController()
         openNewTaskViewController.delegate = self
+        
         //vibration
         let generator = UISelectionFeedbackGenerator()
         generator.selectionChanged()

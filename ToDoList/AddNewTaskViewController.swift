@@ -9,6 +9,8 @@ import UIKit
 import SwiftUI //https://www.youtube.com/watch?v=KZTtktlBOeM
 
 class AddNewTaskViewController: UIViewController, UISheetPresentationControllerDelegate {
+    
+    var delegate: ReloadTaskListTableVCDelegate? //опционал делегата
 
     override var sheetPresentationController: UISheetPresentationController {
         presentationController as! UISheetPresentationController
@@ -82,9 +84,7 @@ class AddNewTaskViewController: UIViewController, UISheetPresentationControllerD
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
-    var delegate: AddNewTaskVCDelegate? //опционал делегата
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Add New Task"

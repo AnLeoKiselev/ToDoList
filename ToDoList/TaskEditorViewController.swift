@@ -10,6 +10,12 @@ import SwiftUI
 
 class TaskEditorViewController: UIViewController {
     
+    var delegate: ReloadTaskListTableVCDelegate? //опционал делегата
+    
+    var taskNameTaskEditorVC = "" //из VC 1 данные будут передавться сюда
+    var descNameTaskEditorVC = ""
+    var indexRowTaskEditorVC = 0
+    
     private lazy var backGroundImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "background2")
@@ -76,11 +82,6 @@ class TaskEditorViewController: UIViewController {
         return button
     }()
     
-    var taskNameTaskEditorVC = "" //из VC 1 данные будут передавться сюда
-    var descNameTaskEditorVC = ""
-    var indexRowTaskEditorVC = 0
-    var delegate: TaskListViewController? //опционал делегата
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Edit Task"
@@ -123,9 +124,16 @@ class TaskEditorViewController: UIViewController {
     }
     
     @objc func markAsDoneButtonTapped() {
+        
+        LocalStore.shared.taskArray[indexRowTaskEditorVC].status = false
+        
+        delegate?.reloadTaskListTableViewVC()
+        
         //vibration
         let generator = UISelectionFeedbackGenerator()
         generator.selectionChanged()
+        navigationController?.popViewController(animated: true)
+        
         navigationController?.popViewController(animated: true)
     }
     
