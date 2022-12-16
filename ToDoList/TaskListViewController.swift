@@ -20,8 +20,6 @@ class TaskListViewController: UIViewController, EditTaskVCDelegate, ReloadTaskLi
     
     func reloadTaskListTableViewVC() {
         taskListTableView.reloadData()
-        taskListTableView.backgroundColor = .red
-        print ("Works")
     }
     
     var segmentedControlPosition = "All"
@@ -153,6 +151,8 @@ extension TaskListViewController: UITableViewDataSource {
         else {
             return UITableViewCell()
         }
+        
+        cell.delegate = self
         
         if segmentedControlPosition == "ToDo" {
             let toDoArray = LocalStore.shared.taskArray.filter({$0.status == false})

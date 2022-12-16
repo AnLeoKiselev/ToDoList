@@ -89,9 +89,6 @@ class CustomTableViewCell: UITableViewCell {
         generator.selectionChanged()
     
         delegate?.reloadTaskListTableViewVC()
-        
-    
-        print ("должно1")
     }
     
     @objc private func trashBoxButtonTapped(_ sender: UIButton) {
@@ -102,12 +99,9 @@ class CustomTableViewCell: UITableViewCell {
         generator.selectionChanged()
         
         delegate?.reloadTaskListTableViewVC()
-        
-        print ("должно2")
     }
     
     override func layoutSubviews() {
-        
         
             super.layoutSubviews()
             
@@ -118,7 +112,7 @@ class CustomTableViewCell: UITableViewCell {
             
             checkBoxButton.heightAnchor.constraint(equalToConstant: 40),
             checkBoxButton.widthAnchor.constraint(equalToConstant: 40),
-            checkBoxButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 30),
+            checkBoxButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 27),
             checkBoxButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             
             mainLabel.heightAnchor.constraint(equalToConstant: 20),
