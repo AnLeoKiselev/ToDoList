@@ -125,7 +125,7 @@ class TaskListViewController: UIViewController, EditTaskVCDelegate, ReloadTaskLi
             segmentedControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             segmentedControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             
-            taskListTableView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 30),
+            taskListTableView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 20),
             taskListTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
             taskListTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10),
             taskListTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10)
