@@ -160,7 +160,7 @@ class TaskEditorViewController: UIViewController {
             descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
             descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
             
-            descriptionTextField.heightAnchor.constraint(equalToConstant: 250),
+            descriptionTextField.heightAnchor.constraint(equalToConstant: 200),
             descriptionTextField.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 10),
             descriptionTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
             descriptionTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),

@@ -11,7 +11,7 @@ class PasswordView: UIView, UITextFieldDelegate {
     
     let lockImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "lock")
+        imageView.image = UIImage(named: "lock.fill")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     } ()

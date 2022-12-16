@@ -20,7 +20,7 @@ class EmailView: UIView, UITextFieldDelegate {
     
     let envelopeImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "envelope")
+        imageView.image = UIImage(named: "envelope.fill")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     } ()
