@@ -21,10 +21,10 @@ class LocalStore {
     //let image = UIImage(systemName: <#T##String#>)
     
     var taskArray: [Task] = [
-        Task(mainname: "1 сделано", descriptionName: "1 сделано!", status: true),
-        Task(mainname: "2 сделано", descriptionName: "2 сделано!", status: true),
-        Task(mainname: "3 не сделано", descriptionName: "3 не сделано!", status: false),
-        Task(mainname: "4 не сделано", descriptionName: "4 не сделано!", status: false)
+        Task(mainname: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua", descriptionName: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua", status: true),
+        Task(mainname: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua", descriptionName: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua", status: true),
+        Task(mainname: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua", descriptionName: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua", status: true),
+        Task(mainname: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua", descriptionName: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua", status: true),
     ]
 }
 

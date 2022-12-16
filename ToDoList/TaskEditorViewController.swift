@@ -78,6 +78,7 @@ class TaskEditorViewController: UIViewController {
     
     var taskNameTaskEditorVC = "" //из VC 1 данные будут передавться сюда
     var descNameTaskEditorVC = ""
+    var indexRowTaskEditorVC = 0
     var delegate: TaskListViewController? //опционал делегата
     
     override func viewDidLoad() {
@@ -89,6 +90,7 @@ class TaskEditorViewController: UIViewController {
         
         mainNameTextField.text = taskNameTaskEditorVC
         descriptionTextField.text = descNameTaskEditorVC
+        //descriptionTextField.text = indexRowTaskEditorVC
     }
     
     private func configureItems(){
