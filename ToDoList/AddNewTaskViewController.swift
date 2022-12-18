@@ -8,7 +8,7 @@
 import UIKit
 import SwiftUI //https://www.youtube.com/watch?v=KZTtktlBOeM
 
-class AddNewTaskViewController: UIViewController, UISheetPresentationControllerDelegate {
+class AddNewTaskViewController: UIViewController, UISheetPresentationControllerDelegate, UITextFieldDelegate {
     
     var delegate: ReloadTaskListTableVCDelegate? //опционал делегата
 
@@ -27,7 +27,7 @@ class AddNewTaskViewController: UIViewController, UISheetPresentationControllerD
     private lazy var mainLabel: UILabel = {
         let label = UILabel()
         label.text = "Task Name"
-        label.textColor = #colorLiteral(red: 0.3535276055, green: 0.2688581944, blue: 0.5764445066, alpha: 1)
+        label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         label.font = UIFont(name: "Avenir Next Bold", size: 15)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -37,7 +37,7 @@ class AddNewTaskViewController: UIViewController, UISheetPresentationControllerD
     private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.text = "Description"
-        label.textColor = #colorLiteral(red: 0.3535276055, green: 0.2688581944, blue: 0.5764445066, alpha: 1)
+        label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         label.font = UIFont(name: "Avenir Next Bold", size: 15)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -89,7 +89,6 @@ class AddNewTaskViewController: UIViewController, UISheetPresentationControllerD
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Add New Task"
-        //view.backgroundColor = #colorLiteral(red: 0.7195851214, green: 0.6823450527, blue: 0.9765150138, alpha: 1)
         view.addSubview(backGroundImageView)
         view.addSubview(mainLabel)
         view.addSubview(mainNameTextField)
@@ -104,8 +103,16 @@ class AddNewTaskViewController: UIViewController, UISheetPresentationControllerD
         sheetPresentationController.prefersGrabberVisible = true
         sheetPresentationController.detents = [.medium()]
 
+        mainNameTextField.delegate = self
+        
+        mainNameTextField.shake()
+        
    }
     
+    func textFieldDidBeginEditing(_textField: UITextField) {
+        mainNameTextField.shake()
+    }
+
     @objc func addNewTaskButtonTapped() {
         let newTask = Task(mainname: mainNameTextField.text!, descriptionName: descriptionTextField.text!, status: false)
         LocalStore.shared.taskArray.append(newTask)

@@ -55,6 +55,10 @@ class CustomTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureContentView()
+        
+        rotateAnyView(view: checkBoxButton, fromValue: 1.0 * Double.pi, toValue:0, duration: 0.5)
+        
+        
     }
     
     private func configureContentView() {
@@ -122,12 +126,12 @@ class CustomTableViewCell: UITableViewCell {
             
             mainLabel.heightAnchor.constraint(equalToConstant: 20),
             mainLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 15),
-            mainLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 80),
+            mainLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 75),
             mainLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -60),
             
             descriptionLabel.heightAnchor.constraint(equalToConstant: 40),
             descriptionLabel.topAnchor.constraint(equalTo: mainLabel.bottomAnchor, constant: 7),
-            descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 80),
+            descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 75),
             descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -60),
             
             trashBoxButton.heightAnchor.constraint(equalToConstant: 30),
@@ -137,6 +141,15 @@ class CustomTableViewCell: UITableViewCell {
          
         ])
     }
+    
+    func rotateAnyView(view: UIView, fromValue: Double, toValue: Double, duration: Double = 1) {
+        let animation = CABasicAnimation(keyPath: "transform.rotation")
+        animation.duration = duration
+        animation.fromValue = fromValue
+        animation.toValue = toValue
+        view.layer.add(animation, forKey: nil)
+    }
+
 }
     
     

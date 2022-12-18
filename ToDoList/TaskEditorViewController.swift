@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SwiftUI
 
 class TaskEditorViewController: UIViewController {
     
@@ -54,7 +53,7 @@ class TaskEditorViewController: UIViewController {
         textField.layer.borderColor = #colorLiteral(red: 0.459498167, green: 0.385009408, blue: 0.6544987559, alpha: 1)
         textField.layer.borderWidth = 1
         textField.textAlignment = .left
-        textField.addPadding(.both(10))
+        //textField.addPadding(.both(10))
         
         return textField
     }()
@@ -94,9 +93,32 @@ class TaskEditorViewController: UIViewController {
         
         mainNameTextField.text = taskNameTaskEditorVC
         descriptionTextField.text = descNameTaskEditorVC
-        print (indexRowTaskEditorVC)
-        //descriptionTextField.text = indexRowTaskEditorVC
+        
+        //mainNameTextField.shake()
+        
+        
+        
+        saveTaskButton.alpha = 0
+        UIView.animate(withDuration: 1) {
+            self.saveTaskButton.alpha = 1
+        }
     }
+    
+//    func shake() {
+//        let animation = CABasicAnimation (keyPath: "positon")
+//        animation.duration = 0.07
+//        animation.repeatCount = 4
+//        animation.autoreverses = true
+//        animation.fromValue = NSValue(cgPoint: CGPoint(x: mainNameTextField.center.x - 10, y: mainNameTextField.center.y))
+//
+//        animation.toValue = NSValue(cgPoint: CGPoint (x: mainNameTextField.center.x + 10, y: mainNameTextField.center.y))
+//
+//        mainNameTextField.layer.add(animation, forKey: "positon")
+//    }
+
+   func textFieldDidBeginEditing(_textField: UITextField) {
+       mainNameTextField.shake(count: 5, for: 0.5, withTranslation: 5)
+   }
     
     private func configureItems(){
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Mark as Done", style: .done, target: self, action: #selector(markAsDoneButtonTapped))
@@ -175,12 +197,6 @@ class TaskEditorViewController: UIViewController {
     }
 }
 
-
-//struct ViewControllerProvider: PreviewProvider {
-//    static var previews: some View {
-//        TaskEditorViewController().showPreview()
-//    }
-//}
 
 //отступ для Label
 class PaddingLabel: UILabel {
@@ -265,6 +281,19 @@ extension UITextField {
     
 }
 
+public extension UIView {
+
+    func shake(count : Float = 4,for duration : TimeInterval = 0.5,withTranslation translation : Float = 5) {
+
+        let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
+        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
+        animation.repeatCount = count
+        animation.duration = duration/TimeInterval(animation.repeatCount)
+        animation.autoreverses = true
+        animation.values = [translation, -translation]
+        layer.add(animation, forKey: "shake")
+    }
+}
 
 
 

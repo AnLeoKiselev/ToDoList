@@ -108,6 +108,44 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // ImageView with Image
+        //let imageV = UIImageView(frame: CGRect(x: 50, y: 100, width: 100, height: 100))
+        //imageV.center = view.center
+       // imageV.image = UIImage(named: "Bird", in: Bundle(for: type(of: self)), compatibleWith: nil)
+        //view.addSubview(imageV)
+
+        // Rotation
+//        UIView.animate(withDuration: 5.0, animations: {
+//            self.mainLogoImageView.transform = CGAffineTransform(rotationAngle: (360.0 * .pi) / 360.0)
+//        })
+//
+//        //Clock-wise
+//           rotateAnyView(view: mainLogoImageView, fromValue: 0, toValue: 2.0 * Double.pi, duration: 1)
+
+           //Reverse
+      rotateAnyView(view: mainLogoImageView, fromValue: 1.0 * Double.pi, toValue:0, duration: 1)
+        
+    rotateAnyView(view: accountStackView, fromValue: 1.0 * Double.pi, toValue:0, duration: 1)
+        
+//        rotateAnyView(view: loginButton, fromValue: 1.0 * Double.pi, toValue:0, duration: 2)
+
+
+        
+    
+       
+
+       
+        
+        loginButton.alpha = 0
+        
+        UIView.animate(withDuration: 1) {
+            self.loginButton.alpha = 1
+        }
+        
+        
+        
+        
+        
         setSubviews()
         addSubviewsToView()
         setSubviewsLayouts()
@@ -115,7 +153,8 @@ class LoginViewController: UIViewController {
     
         self.hideKeyboardWhenTappedAround() //клава убирается после тапа везде
     }
-
+    
+    
     private func setSubviews() {
         emailView.layer.cornerRadius = 8
         emailView.layer.borderWidth = 1
@@ -165,6 +204,8 @@ class LoginViewController: UIViewController {
         
         present(navigationController, animated: true)  //present - показали и убрали
     }
+  
+   // MARK: - set constraints
     
     private func setSubviewsLayouts() {
         NSLayoutConstraint.activate([
@@ -212,6 +253,15 @@ class LoginViewController: UIViewController {
             accountStackView.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 15)
         ])
     }
+
+func rotateAnyView(view: UIView, fromValue: Double, toValue: Double, duration: Double = 1) {
+    let animation = CABasicAnimation(keyPath: "transform.rotation")
+    animation.duration = duration
+    animation.fromValue = fromValue
+    animation.toValue = toValue
+    view.layer.add(animation, forKey: nil)
+}
+
 }
 
 extension UIButton {  //подчеркивание кнопки
@@ -239,6 +289,7 @@ extension UIViewController { //клава убирается после тапа
         view.endEditing(true)
     }
 }
+
 
 //struct ViewControllerProvider: PreviewProvider {
 //    static var previews: some View {

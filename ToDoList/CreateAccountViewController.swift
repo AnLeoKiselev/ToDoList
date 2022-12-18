@@ -94,6 +94,7 @@ class CreateAccountViewController: UIViewController {
         button.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         button.layer.cornerRadius = 10
         button.titleLabel?.font = UIFont(name: "Avenir Next Bold", size: 20)
+        button.addTarget(self, action: #selector(createAccountTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -144,6 +145,14 @@ class CreateAccountViewController: UIViewController {
     }
     
     @objc func logInButtonTapped() {
+        //vibration
+        let generator = UISelectionFeedbackGenerator()
+        generator.selectionChanged()
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func createAccountTapped() {
+        
         //vibration
         let generator = UISelectionFeedbackGenerator()
         generator.selectionChanged()

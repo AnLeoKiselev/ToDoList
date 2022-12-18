@@ -31,6 +31,7 @@ class EmailView: UIView, UITextFieldDelegate {
         NSAttributedString(string: "E-mail", attributes: [NSAttributedString.Key.foregroundColor: UIColor.init(_colorLiteralRed: 0.6904429793, green: 0.6597178578, blue: 0.8047469258, alpha: 0.5)])
         textField.enablesReturnKeyAutomatically = true
         textField.textColor = .white
+        textField.text = "anleokiselev@gmail.com"
         textField.font = UIFont(name: "SF Pro Text Bold", size: 20)
         textField.keyboardType = .emailAddress //тип клавиатуры
         //textField.keyboardAppearance = .dark
@@ -44,6 +45,9 @@ class EmailView: UIView, UITextFieldDelegate {
         setupView()
         setConstraints()
         self.emailTextField.delegate = self //клава убирается после нажатия return
+        
+        emailTextField.shake(count: 5, for: 0.5, withTranslation: 5)
+        
     }
 
     required init?(coder: NSCoder) {

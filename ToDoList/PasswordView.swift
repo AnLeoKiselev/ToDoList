@@ -25,6 +25,8 @@ class PasswordView: UIView, UITextFieldDelegate {
         textField.keyboardType = .emailAddress //тип клавиатуры
         //textField.keyboardAppearance = .dark
         textField.enablesReturnKeyAutomatically = true
+        textField.text = "123456474677"
+        textField.isSecureTextEntry = true
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
@@ -35,6 +37,8 @@ class PasswordView: UIView, UITextFieldDelegate {
         setupView()
         setConstraints()
         self.passwordTextField.delegate = self //клава убирается после нажатия return
+        
+        passwordTextField.shake(count: 5, for: 0.5, withTranslation: 5)
     }
     
     required init?(coder: NSCoder) {

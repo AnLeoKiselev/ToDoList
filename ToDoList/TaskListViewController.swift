@@ -63,7 +63,26 @@ class TaskListViewController: UIViewController, EditTaskVCDelegate, ReloadTaskLi
         addToSubview()
         addConstraints()
         configureItems()
+        
+        taskListTableView.alpha = 0
+        
+        UIView.animate(withDuration: 1) {
+            self.taskListTableView.alpha = 1
+        }
+        
+        rotateAnyView(view: segmentedControl, fromValue: 1.0 * Double.pi, toValue:0, duration: 1)
+        
+        
     }
+    
+    func rotateAnyView(view: UIView, fromValue: Double, toValue: Double, duration: Double = 1) {
+        let animation = CABasicAnimation(keyPath: "transform.rotation")
+        animation.duration = duration
+        animation.fromValue = fromValue
+        animation.toValue = toValue
+        view.layer.add(animation, forKey: nil)
+    }
+
     
     private func configureItems() {
         
