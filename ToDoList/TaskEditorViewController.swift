@@ -23,15 +23,18 @@ class TaskEditorViewController: UIViewController {
         return imageView
     } ()
     
+    //заголовок
     private lazy var mainLabel: UILabel = {
         let label = UILabel()
         label.text = "Task Name"
         label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         label.font = UIFont(name: "Avenir Next Bold", size: 15)
+        
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
+    //заголовок
     private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.text = "Description"
@@ -41,19 +44,20 @@ class TaskEditorViewController: UIViewController {
         return label
     }()
     
-    private lazy var mainNameTextField: UITextField = {
-        let textField = UITextField()
-        textField.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        textField.translatesAutoresizingMaskIntoConstraints = false
+    private lazy var mainNameTextField: UILabel = {
+        let label = PaddingLabel(withInsets: 8, 8, 16, 16)
+        label.textColor = .black
+        label.clipsToBounds = true
+        label.sizeToFit()
+        label.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        label.font = UIFont(name: "Avenir Next", size: 20)
+        label.layer.cornerRadius = 10
+        label.layer.borderColor = #colorLiteral(red: 0.344005015, green: 0.2886810107, blue: 0.4924146581, alpha: 1)
+        label.layer.borderWidth = 1
+        label.textAlignment = .left
         
-        textField.textColor = .black
-        textField.font = UIFont(name: "Avenir Next", size: 20)
-        textField.layer.cornerRadius = 10
-        textField.layer.borderColor = #colorLiteral(red: 0.344005015, green: 0.2886810107, blue: 0.4924146581, alpha: 1)
-        textField.layer.borderWidth = 1
-        textField.textAlignment = .left
-        
-        return textField
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
     
     private lazy var descriptionTextField: UITextView = {
@@ -63,10 +67,9 @@ class TaskEditorViewController: UIViewController {
         textView.textColor = .black
         textView.font = UIFont(name: "Avenir Next", size: 20)
         textView.layer.cornerRadius = 10
-        textView.layer.borderColor = #colorLiteral(red: 0.344005015, green: 0.2886810107, blue: 0.4924146581, alpha: 1)
+        textView.layer.borderColor = #colorLiteral(red: 0.459498167, green: 0.385009408, blue: 0.6544987559, alpha: 1)
         textView.layer.borderWidth = 1
         textView.textAlignment = .left
-        
         return textView
     }()
     
@@ -179,7 +182,40 @@ class TaskEditorViewController: UIViewController {
 //    }
 //}
 
+//отступ для Label
+class PaddingLabel: UILabel {
 
+    var topInset: CGFloat
+    var bottomInset: CGFloat
+    var leftInset: CGFloat
+    var rightInset: CGFloat
+
+    required init(withInsets top: CGFloat, _ bottom: CGFloat,_ left: CGFloat,_ right: CGFloat) {
+        self.topInset = top
+        self.bottomInset = bottom
+        self.leftInset = left
+        self.rightInset = right
+        super.init(frame: CGRect.zero)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override func drawText(in rect: CGRect) {
+        let insets = UIEdgeInsets(top: topInset, left: leftInset, bottom: bottomInset, right: rightInset)
+        super.drawText(in: rect.inset(by: insets))
+    }
+
+    override var intrinsicContentSize: CGSize {
+        get {
+            var contentSize = super.intrinsicContentSize
+            contentSize.height += topInset + bottomInset
+            contentSize.width += leftInset + rightInset
+            return contentSize
+        }
+    }
+}
 
 
 

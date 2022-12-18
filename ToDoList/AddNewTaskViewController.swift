@@ -44,6 +44,8 @@ class AddNewTaskViewController: UIViewController, UISheetPresentationControllerD
     }()
     
     //поле ввода
+    
+    
     private lazy var mainNameTextField: UITextField = {
         let textField = UITextField()
         textField.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
@@ -57,7 +59,7 @@ class AddNewTaskViewController: UIViewController, UISheetPresentationControllerD
         
         return textField
     }()
-    
+
     //поле ввода
     private lazy var descriptionTextField: UITextView = {
         let textView = UITextView()
@@ -69,7 +71,6 @@ class AddNewTaskViewController: UIViewController, UISheetPresentationControllerD
         textView.layer.borderColor = #colorLiteral(red: 0.459498167, green: 0.385009408, blue: 0.6544987559, alpha: 1)
         textView.layer.borderWidth = 1
         textView.textAlignment = .left
-        
         return textView
     }()
     

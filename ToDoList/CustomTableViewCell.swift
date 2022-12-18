@@ -115,9 +115,9 @@ class CustomTableViewCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             
-            checkBoxButton.heightAnchor.constraint(equalToConstant: 40),
-            checkBoxButton.widthAnchor.constraint(equalToConstant: 40),
-            checkBoxButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 27),
+            checkBoxButton.heightAnchor.constraint(equalToConstant: 35),
+            checkBoxButton.widthAnchor.constraint(equalToConstant: 35),
+            checkBoxButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 29),
             checkBoxButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             
             mainLabel.heightAnchor.constraint(equalToConstant: 20),
