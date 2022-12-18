@@ -31,20 +31,25 @@ class CustomTableViewCell: UITableViewCell {
     private let mainLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = .systemFont(ofSize: 20,weight:.semibold)
+        label.font = .systemFont(ofSize: 21,weight:.semibold)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
-    private let descriptionLabel: UITextView = {
-        let textView = UITextView()
-        textView.textColor = .white
-        textView.font = .systemFont(ofSize: 17,weight:.light)
-        textView.textAlignment = .left
-        textView.backgroundColor = .clear
-        textView.isEditable = false
-        textView.translatesAutoresizingMaskIntoConstraints = false
-        return textView
+    private let descriptionLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.font = .systemFont(ofSize: 18,weight:.light)
+        label.textAlignment = .left
+        label.backgroundColor = .clear
+        //label.isEditable = false
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.9
+        label.numberOfLines = 2
+        
+        
+        return label
     }()
  
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -120,9 +125,9 @@ class CustomTableViewCell: UITableViewCell {
             mainLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 80),
             mainLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -60),
             
-            descriptionLabel.heightAnchor.constraint(equalToConstant: 50),
-            descriptionLabel.topAnchor.constraint(equalTo: mainLabel.bottomAnchor, constant: 0),
-            descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 75),
+            descriptionLabel.heightAnchor.constraint(equalToConstant: 40),
+            descriptionLabel.topAnchor.constraint(equalTo: mainLabel.bottomAnchor, constant: 7),
+            descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 80),
             descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -60),
             
             trashBoxButton.heightAnchor.constraint(equalToConstant: 30),

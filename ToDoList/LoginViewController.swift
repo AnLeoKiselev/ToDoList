@@ -19,6 +19,7 @@ class LoginViewController: UIViewController {
         label.text = "Todo List"
         label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         label.font = UIFont(name: "Avenir Next", size: 40)
+        //label.font = .systemFont(ofSize: 40, weight: .light)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
