@@ -44,20 +44,19 @@ class TaskEditorViewController: UIViewController {
         return label
     }()
     
-    private lazy var mainNameTextField: UILabel = {
-        let label = PaddingLabel(withInsets: 8, 8, 16, 16)
-        label.textColor = .black
-        label.clipsToBounds = true
-        label.sizeToFit()
-        label.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        label.font = UIFont(name: "Avenir Next", size: 20)
-        label.layer.cornerRadius = 10
-        label.layer.borderColor = #colorLiteral(red: 0.344005015, green: 0.2886810107, blue: 0.4924146581, alpha: 1)
-        label.layer.borderWidth = 1
-        label.textAlignment = .left
+    private lazy var mainNameTextField: UITextField = {
+        let textField = UITextField()
+        textField.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.textColor = .black
+        textField.font = UIFont(name: "Avenir Next", size: 20)
+        textField.layer.cornerRadius = 10
+        textField.layer.borderColor = #colorLiteral(red: 0.459498167, green: 0.385009408, blue: 0.6544987559, alpha: 1)
+        textField.layer.borderWidth = 1
+        textField.textAlignment = .left
+        textField.addPadding(.both(20))
         
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
+        return textField
     }()
     
     private lazy var descriptionTextField: UITextView = {
@@ -70,6 +69,7 @@ class TaskEditorViewController: UIViewController {
         textView.layer.borderColor = #colorLiteral(red: 0.459498167, green: 0.385009408, blue: 0.6544987559, alpha: 1)
         textView.layer.borderWidth = 1
         textView.textAlignment = .left
+        textView.leftSpace()
         return textView
     }()
     
@@ -217,6 +217,53 @@ class PaddingLabel: UILabel {
     }
 }
 
+extension UITextField {
+
+    enum PaddingSide {
+        case left(CGFloat)
+        case right(CGFloat)
+        case both(CGFloat)
+    }
+
+    func addPadding(_ padding: PaddingSide) {
+
+        self.leftViewMode = .always
+        self.layer.masksToBounds = true
+
+
+        switch padding {
+
+        case .left(let spacing):
+            let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: spacing, height: self.frame.height))
+            self.leftView = paddingView
+            self.rightViewMode = .always
+
+        case .right(let spacing):
+            let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: spacing, height: self.frame.height))
+            self.rightView = paddingView
+            self.rightViewMode = .always
+
+        case .both(let spacing):
+            let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: spacing, height: self.frame.height))
+            // left
+            self.leftView = paddingView
+            self.leftViewMode = .always
+            // right
+            self.rightView = paddingView
+            self.rightViewMode = .always
+        }
+    }
+    
+    // 1.  To add left padding
+    //yourTextFieldName.addPadding(.left(20))
+
+    // 2.  To add right padding
+    //yourTextFieldName.addPadding(.right(20))
+
+    // 3. To add left & right padding both
+    //yourTextFieldName.addPadding(.both(20))
+    
+}
 
 
 
