@@ -54,7 +54,7 @@ class TaskEditorViewController: UIViewController {
         textField.layer.borderColor = #colorLiteral(red: 0.459498167, green: 0.385009408, blue: 0.6544987559, alpha: 1)
         textField.layer.borderWidth = 1
         textField.textAlignment = .left
-        textField.addPadding(.both(20))
+        textField.addPadding(.both(10))
         
         return textField
     }()
